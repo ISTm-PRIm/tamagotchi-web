@@ -5,6 +5,7 @@ import SignUp from "./screens/SignUp";
 import Home from "./screens/Home";
 import TamagotchiHouse from "./screens/TamagotchiHouse";
 import Error404 from "./screens/Error404";
+import Rules from "./screens/Rules";
 
 const RouterConf = () => {
   return (
@@ -15,6 +16,7 @@ const RouterConf = () => {
         <Route exact path="/tomogotchiHome/:id" component={TamagotchiHouse} />
         <Route path="/sign_in" component={SignIn} />
         <Route path="/sign_up" component={SignUp} />
+        <Route path="/rulse" component={Rules} />
         <Route component={Error404} />
       </Switch>
     </Router>
