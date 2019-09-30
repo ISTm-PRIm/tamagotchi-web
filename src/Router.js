@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import SignIn from "./screens/SignIn";
-import SignUp from "./screens/SignUp";
+import { SignInPage, SignUpPage } from "./screens/Registration";
 import Home from "./screens/Home";
 import TamagotchiHouse from "./screens/TamagotchiHouse";
 import Error404 from "./screens/Error404";
@@ -12,10 +11,10 @@ const RouterConf = () => {
     <Router>
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/tomogotchiHome" component={Home} />
-        <Route exact path="/tomogotchiHome/:id" component={TamagotchiHouse} />
-        <Route path="/sign_in" component={SignIn} />
-        <Route path="/sign_up" component={SignUp} />
+        <Route exact path="/tamagotchiHome" component={Home} />
+        <Route exact path="/tamagotchiHome/:id?" component={TamagotchiHouse} />
+        <Route path="/sign_in" component={SignInPage} />
+        <Route path="/sign_up" component={SignUpPage} />
         <Route path="/rulse" component={Rules} />
         <Route component={Error404} />
       </Switch>

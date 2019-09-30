@@ -1,3 +1,29 @@
+@font-face {
+  font-family: "GraphikLCG-Medium";
+  src: local("GraphikLCG-Medium"), url("./content/fonts/GraphikLCG-Medium.otf");
+}
+
+@font-face {
+  font-family: "GraphikLCG-Bold";
+  src: local("GraphikLCG-Bold"), url("./content/fonts/GraphikLCG-Bold.otf");
+}
+
+@font-face {
+  font-family: "GraphikLCG-Regular";
+  src: local("GraphikLCG-Regular"),
+    url("./content/fonts/GraphikLCG-Regular.otf");
+}
+@font-face {
+  font-family: "GraphikLCG-Semibold";
+  src: local("GraphikLCG-Semibold"),
+    url("./content/fonts/GraphikLCG-Semibold.otf");
+}
+
+@font-face {
+  font-family: "GraphikLCG-Thin";
+  src: local("GraphikLCG-Thin"), url("./content/fonts/GraphikLCG-Thin.otf");
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -10,4 +36,25 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.background_fon {
+  background-color: rgba(255, 255, 255, 1);
+  width: 100%;
+  height: 100%;
+}
+
+.form {
+}
+
+.input {
+  font-family: GraphikLCG-Regular;
+  color: #333333;
+  font-size: 14px;
+  display: block;
+  width: 100%;
+  background-color: #f8f8f8;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  height: 50px;
 }
