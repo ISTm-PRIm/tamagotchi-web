@@ -86,7 +86,7 @@ class SignUpForm extends React.Component {
         >
           <input
             type="text"
-            placeholder="Фамилия и Имя"
+            placeholder="e-mail"
             className="input"
             value={this.state.fio}
             onChange={event => {
@@ -141,7 +141,7 @@ class SignUpForm extends React.Component {
           }}
         >
           <input
-            className="login"
+            className="input"
             style={{
               ...style.display,
               ...style.button,

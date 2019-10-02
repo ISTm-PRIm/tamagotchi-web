@@ -65,43 +65,14 @@ class SignInForm extends React.Component {
           ...style.display,
           flexWrap: "wrap",
           borderRadius: 20,
-          padding: 20,
+          padding: "0px 20px 20px 20px",
+          justifyContent: "center",
           boxShadow: "0 0 15px rgba(0,0,0,0.25)"
         }}
       >
-        <div
-          data-validate="Username is required"
-          style={{
-            width: "100%",
-            marginBottom: 10
-          }}
-        >
-          <input
-            id="email"
-            type="text"
-            placeholder="E-mail"
-            className="input"
-            value={this.state.email}
-            onChange={this.handleChangeEmail}
-          />
-        </div>
-        <div
-          data-validate="Password is required"
-          style={{
-            width: "100%",
-            marginBottom: 14
-          }}
-        >
-          <input
-            id="pass"
-            className="input"
-            type="password"
-            placeholder="Пароль"
-            value={this.state.password}
-            onChange={this.handleChangePassword}
-          />
-        </div>
-
+        <p style={{ fontFamily: "GraphikLCG-Semibold", textAlign: "center" }}>
+          Авторизация
+        </p>
         <div
           style={{
             width: "100%",
@@ -109,17 +80,43 @@ class SignInForm extends React.Component {
             flexWrap: "wrap"
           }}
         >
-          <input
+          <div>Google</div>
+        </div>
+        <div
+          style={{
+            width: "100%",
+            ...style.display,
+            flexWrap: "wrap"
+          }}
+        >
+          <Link
             className="login"
             style={{
               ...style.display,
               ...style.button,
+              textDecoration: "none",
+              alignItems: "center",
               backgroundColor: "#007AFF",
               color: "rgba(255,255,255,1)"
             }}
-            type="submit"
-            value="Войти"
-          />
+            to={"/sign_up"}
+          >
+            Регистрация
+          </Link>
+          <Link
+            className="login"
+            style={{
+              ...style.display,
+              ...style.button,
+              textDecoration: "none",
+              alignItems: "center",
+              backgroundColor: "#007AFF",
+              color: "rgba(255,255,255,1)"
+            }}
+            to={"/tamagotchiHome"}
+          >
+            Тестовая комната
+          </Link>
         </div>
       </form>
     );
