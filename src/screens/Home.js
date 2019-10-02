@@ -1,29 +1,49 @@
 import React from "react";
-import Lottie from "react-lottie";
-
-import hello from "../images/Walk.tgs.json";
-
+import Pet from "./components/Pet";
+import home from "../images/home.jpeg";
+import hello from "../images/Anim.tgs.json";
+import LifeBar from "./components/LifeBar";
 const Home = () => {
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: hello,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice"
-    }
-  };
-
   return (
-    <div>
-      <div>Welcome To Home</div>
+    <div
+      style={{
+        // width: "100%",
+        height: "100%",
+        backgroundImage: `url(${home})`,
+        webkitBackgroundSize: "100%"
+        // backgroundPosition: "center",
+        // backgroundRepeat: "no-repeat"
+      }}
+    >
+      <Pet img={hello} />{" "}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          backgroundColor: "white"
+        }}
+      >
+        <div style={{ paddingLeft: 20 }}>
+          <h3 style={{ fontFamily: "GraphikLCG-Semibold" }}>
+            Наименование комнаты
+          </h3>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between"
+          }}
+        >
+          <LifeBar />
+          <LifeBar />
+          <LifeBar />
+          <LifeBar />
+        </div>
 
-      <Lottie
-        options={defaultOptions}
-        height={400}
-        width={400}
-        isStopped={false}
-        isPaused={false}
-      />
+        <div style={{ paddingRight: 20 }}>Бар</div>
+      </div>
     </div>
   );
 };
