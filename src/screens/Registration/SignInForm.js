@@ -1,33 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Google } from "../../content/Icons";
 
 class SignInForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = { email: "", password: "" };
-    this.handleChangeEmail = this.handleChangeEmail.bind(this);
-    this.handleChangePassword = this.handleChangePassword.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  isActive() {
-    return this.state.email.length !== 0 && this.state.password.length !== 0
-      ? true
-      : false;
-  }
-
-  handleChangeEmail(event) {
-    this.setState({
-      email: event.target.value,
-      password: this.state.password
-    });
-  }
-
-  handleChangePassword(event) {
-    this.setState({
-      email: this.state.email,
-      password: event.target.value
-    });
   }
 
   handleSubmit = async event => {
@@ -71,16 +50,48 @@ class SignInForm extends React.Component {
         }}
       >
         <p style={{ fontFamily: "GraphikLCG-Semibold", textAlign: "center" }}>
-          Авторизация
+          {window.location.href.indexOf("sign_in") !== -1
+            ? "Авторизация"
+            : "Регистрация"}
         </p>
         <div
           style={{
             width: "100%",
             ...style.display,
-            flexWrap: "wrap"
+            flexWrap: "wrap",
+            paddingBottom: 10
           }}
         >
-          <div>Google</div>
+          <div
+            style={{
+              backgroundColor: "red",
+              display: "flex",
+              padding: 10,
+              borderRadius: 5,
+              width: "100%"
+            }}
+          >
+            <div>
+              <Google />
+            </div>
+            <div
+              style={{
+                backgroundColor: "#ffffff",
+                paddingLeft: 1,
+                marginRight: 10,
+                marginLeft: 10
+              }}
+            />
+            <div
+              style={{
+                color: "#ffffff",
+                fontFamily: "GraphikLCG-Medium",
+                margin: "auto"
+              }}
+            >
+              Google
+            </div>
+          </div>
         </div>
         <div
           style={{
@@ -89,22 +100,30 @@ class SignInForm extends React.Component {
             flexWrap: "wrap"
           }}
         >
+          {window.location.href.indexOf("sign_in") !== -1 ? (
+            <div
+              style={{
+                ...style.display,
+                ...style.button,
+                textDecoration: "none",
+                alignItems: "center",
+                backgroundColor: "#007AFF",
+                marginBottom: 10
+              }}
+            >
+              <Link
+                style={{
+                  textDecoration: "none",
+                  color: "rgba(255,255,255,1)"
+                }}
+                to={"/sign_up"}
+              >
+                Регистрация
+              </Link>
+            </div>
+          ) : null}
+
           <Link
-            className="login"
-            style={{
-              ...style.display,
-              ...style.button,
-              textDecoration: "none",
-              alignItems: "center",
-              backgroundColor: "#007AFF",
-              color: "rgba(255,255,255,1)"
-            }}
-            to={"/sign_up"}
-          >
-            Регистрация
-          </Link>
-          <Link
-            className="login"
             style={{
               ...style.display,
               ...style.button,

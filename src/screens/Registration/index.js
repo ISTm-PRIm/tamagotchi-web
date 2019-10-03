@@ -1,17 +1,8 @@
 import React from "react";
 import SignInForm from "./SignInForm";
-import SignUpForm from "./SignUpForm";
 import "../../index.css";
 
-function Link(props) {
-  return (
-    <a href={props.link || "/"} style={style.link}>
-      {props.text}
-    </a>
-  );
-}
-
-function BodyPage(props) {
+export default function SignInPage() {
   return (
     <div
       style={{
@@ -24,26 +15,12 @@ function BodyPage(props) {
       <div style={style.fon}>
         <p style={style.namePage}>Тамагочи "Ветерок"</p>
         <div style={{ ...style.display, ...style.indent }}>
-          <div style={style.form}>{props.children}</div>
+          <div style={style.form}>
+            <SignInForm />
+          </div>
         </div>
       </div>
     </div>
-  );
-}
-
-export function SignInPage() {
-  return (
-    <BodyPage>
-      <SignInForm />
-    </BodyPage>
-  );
-}
-
-export function SignUpPage() {
-  return (
-    <BodyPage>
-      <SignUpForm />
-    </BodyPage>
   );
 }
 
