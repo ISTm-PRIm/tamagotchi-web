@@ -17,11 +17,11 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 export function AngleLeft() {
-  return <FontAwesomeIcon icon={faAngleLeft} color={"#000000"} size="1x" />;
+  return <FontAwesomeIcon icon={faAngleLeft} color={"#000000"} size="3x" />;
 }
 
 export function AngleRight() {
-  return <FontAwesomeIcon icon={faAngleRight} color={"#000000"} size="1x" />;
+  return <FontAwesomeIcon icon={faAngleRight} color={"#000000"} size="3x" />;
 }
 
 export function Question() {

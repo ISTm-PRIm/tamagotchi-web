@@ -6,15 +6,17 @@ import {
 import RadialSeparators from "./RadialSeparators";
 import "react-circular-progressbar/dist/styles.css";
 
-const LifeBar = () => {
+const LifeBar = props => {
   return (
-    <div style={{ width: 100, height: "auto" }}>
+    <div style={{ width: 75, height: "auto" }}>
       <CircularProgressbarWithChildren
-        value={80}
-        text={`${80}%`}
+        value={props.value}
+        text={`${props.value}%`}
         strokeWidth={10}
         styles={buildStyles({
-          strokeLinecap: "butt"
+          strokeLinecap: "butt",
+          pathColor: props.color,
+          textColor: props.color
         })}
       >
         <RadialSeparators
@@ -26,6 +28,17 @@ const LifeBar = () => {
           }}
         />
       </CircularProgressbarWithChildren>
+      <p
+        style={{
+          textAlign: "center",
+          fontFamily: "GraphikLCG-Medium",
+          fontSize: 14,
+          margin: 0,
+          marginTop: 10
+        }}
+      >
+        {props.nameValue}
+      </p>
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import SignInForm from "./SignInForm";
+import fon from "../../content/images/sign_in_fone.jpg";
 import "../../index.css";
 
 export default function SignInPage() {
@@ -7,17 +8,16 @@ export default function SignInPage() {
     <div
       style={{
         position: "absolute",
-        backgroundColor: "rgba(255,255,255,1)",
+        backgroundImage: `url(${fon})`,
+        webkitBackgroundSize: "100%",
         width: "100%",
         height: "100%"
       }}
     >
-      <div style={style.fon}>
-        <p style={style.namePage}>Тамагочи "Ветерок"</p>
-        <div style={{ ...style.display, ...style.indent }}>
-          <div style={style.form}>
-            <SignInForm />
-          </div>
+      <p style={style.namePage}>Тамагочи "Ветерок"</p>
+      <div style={{ ...style.display, ...style.indent }}>
+        <div style={style.form}>
+          <SignInForm />
         </div>
       </div>
     </div>
@@ -26,7 +26,7 @@ export default function SignInPage() {
 
 const style = {
   fon: {
-    paddingTop: 30
+    // paddingTop: 30,
   },
   link: {
     display: "block",
@@ -34,11 +34,11 @@ const style = {
     textAlign: "center"
   },
   namePage: {
+    padding: 30,
+
     textAlign: "center",
     fontSize: 27,
-    fontFamily: "GraphikLCG-Semibold",
-    // color: "rgba(255,255,255,1)",
-    display: "block"
+    fontFamily: "GraphikLCG-Semibold"
   },
   display: {
     display: "flex"
@@ -57,10 +57,9 @@ const style = {
     borderRadius: 3
   },
   form: {
-    width: 380,
-    background: "rgba(255,255,255,1)",
-    borderRadius: 3,
-    padding: 30
+    width: 380
+    // borderRadius: 3,
+    // padding: 30
   },
   linkPass: {
     color: "#007AFF",

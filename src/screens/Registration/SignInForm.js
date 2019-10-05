@@ -42,6 +42,7 @@ class SignInForm extends React.Component {
         onSubmit={this.handleSubmit}
         style={{
           ...style.display,
+          background: "rgba(255,255,255,1)",
           flexWrap: "wrap",
           borderRadius: 20,
           padding: "0px 20px 20px 20px",

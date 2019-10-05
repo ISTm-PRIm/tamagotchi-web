@@ -14,7 +14,7 @@ const Pet = props => {
   return (
     <Lottie
       options={defaultOptions}
-      height={400}
+      height={300}
       width={400}
       isStopped={false}
       isPaused={false}

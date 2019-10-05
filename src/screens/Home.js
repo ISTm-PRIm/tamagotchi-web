@@ -1,48 +1,63 @@
 import React from "react";
-import Pet from "./components/Pet";
-import home from "../images/home.jpeg";
-import hello from "../images/Anim.tgs.json";
-import LifeBar from "./components/LifeBar";
+import Pet from "../components/Pet";
+import home from "../images/home.jpg";
+import hello from "../content/pet/RIP.json";
+import FunctionMenu from "../components/FunctionMenu";
+import { AngleRight, AngleLeft } from "../content/Icons";
+
 const Home = () => {
   return (
-    <div
-      style={{
-        // width: "100%",
-        height: "100%",
-        backgroundImage: `url(${home})`,
-        webkitBackgroundSize: "100%"
-        // backgroundPosition: "center",
-        // backgroundRepeat: "no-repeat"
-      }}
-    >
-      <Pet img={hello} />{" "}
+    <div>
+      <FunctionMenu
+        value={{ health: 100, hygiene: 60, food: 40, sleep: 20 }}
+        nameRoom={"Тестовая комната"}
+      />
       <div
         style={{
+          position: "fixed",
           display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          backgroundColor: "white"
+          top: 120,
+          left: 0,
+          width: "100%",
+
+          backgroundImage: `url(${home})`,
+          webkitBackgroundSize: "100%",
+          paddingTop: "15%",
+          paddingBottom: "15%"
         }}
       >
-        <div style={{ paddingLeft: 20 }}>
-          <h3 style={{ fontFamily: "GraphikLCG-Semibold" }}>
-            Наименование комнаты
-          </h3>
-        </div>
         <div
           style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between"
+            paddingLeft: 20,
+            paddingRight: 20
           }}
         >
-          <LifeBar />
-          <LifeBar />
-          <LifeBar />
-          <LifeBar />
+          <div
+            style={{
+              padding: 15,
+              paddingLeft: 25,
+              paddingRight: 28,
+              borderRadius: 40,
+              backgroundColor: "#ffffff"
+            }}
+          >
+            <AngleLeft />
+          </div>
         </div>
-
-        <div style={{ paddingRight: 20 }}>Бар</div>
+        <Pet img={hello} />
+        <div style={{ paddingLeft: 20, paddingRight: 20 }}>
+          <div
+            style={{
+              padding: 15,
+              paddingLeft: 28,
+              paddingRight: 25,
+              borderRadius: 40,
+              backgroundColor: "#ffffff"
+            }}
+          >
+            <AngleRight />
+          </div>
+        </div>
       </div>
     </div>
   );
