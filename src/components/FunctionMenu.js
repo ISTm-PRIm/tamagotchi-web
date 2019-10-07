@@ -74,7 +74,14 @@ class FunctionMenu extends React.Component {
               {this.props.nameRoom}
             </h3>
 
-            <div>Функциональная кнопка</div>
+            <div
+              style={style.button}
+              onClick={() => {
+                this.props.button.click();
+              }}
+            >
+              {this.props.button.icon}
+            </div>
           </div>
           <div>
             <Link
