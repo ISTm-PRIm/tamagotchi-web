@@ -21,7 +21,6 @@ export default class Home extends React.Component {
 
   render() {
     let roomInfo = getRoomInfoByName();
-    console.log("props", this.props);
     if (getParameterFromUrl("room")) {
       roomInfo = getRoomInfoByName(getParameterFromUrl("room").toString());
     }
