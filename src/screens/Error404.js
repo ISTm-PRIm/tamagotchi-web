@@ -9,7 +9,7 @@ const Error404 = () => {
       style={{
         position: "absolute",
         backgroundImage: `url(${fon})`,
-        webkitBackgroundSize: "100%",
+        WebkitBackgroundSize: "100%",
         display: "block",
         width: "100%",
         height: "100%"

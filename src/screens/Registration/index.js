@@ -9,7 +9,7 @@ export default function SignInPage() {
       style={{
         position: "absolute",
         backgroundImage: `url(${fon})`,
-        webkitBackgroundSize: "100%",
+        WebkitBackgroundSize: "100%",
         width: "100%",
         height: "100%"
       }}

@@ -11,7 +11,7 @@ const RouterConf = () => {
     <Router>
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/home:url?" component={Home} />
+        <Route path="/home" component={Home} />
         {/* <Route exact path="/tamagotchiHome/:id?" component={TamagotchiHouse} /> */}
         <Route path="/sign_in" component={SignInPage} />
         <Route path="/sign_up" component={SignInPage} />
