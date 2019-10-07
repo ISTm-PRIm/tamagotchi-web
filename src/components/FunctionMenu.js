@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import LifeBar from "./LifeBar";
 import { Question, SignOut } from "../content/Icons";
 import Modal from "./Modal";
@@ -15,7 +16,6 @@ class FunctionMenu extends React.Component {
     return (
       <div
         style={{
-          // padding: 10,
           display: "flex",
           alignItems: "center",
           justifyContent: "space-around",
@@ -41,46 +41,64 @@ class FunctionMenu extends React.Component {
           }}
         >
           <div>
-            <LifeBar
-              color={this.props.value.health > 25 ? GREEN : RED}
-              value={this.props.value.health}
-              nameValue={"Здоровье"}
-            />
+            <Link
+              style={{ color: "black", textDecoration: "none" }}
+              to={`/home?room=hospital`}
+            >
+              <LifeBar
+                color={this.props.value.health > 25 ? GREEN : RED}
+                value={this.props.value.health}
+                nameValue={"Здоровье"}
+              />
+            </Link>
           </div>
           <div>
-            <LifeBar
-              color={this.props.value.hygiene > 20 ? BLUE : RED}
-              value={this.props.value.hygiene}
-              nameValue={"Гигиена"}
-            />
+            <Link
+              style={{ color: "black", textDecoration: "none" }}
+              to={`/home?room=bath`}
+            >
+              <LifeBar
+                color={this.props.value.hygiene > 20 ? BLUE : RED}
+                value={this.props.value.hygiene}
+                nameValue={"Гигиена"}
+              />
+            </Link>
           </div>
           <div style={{ justifyContent: "center" }}>
-            <div>
-              <h3
-                style={{
-                  fontFamily: "GraphikLCG-Semibold",
-                  textAlign: "center"
-                }}
-              >
-                {this.props.nameRoom}
-              </h3>
-            </div>
+            <h3
+              style={{
+                fontFamily: "GraphikLCG-Semibold",
+                textAlign: "center"
+              }}
+            >
+              {this.props.nameRoom}
+            </h3>
 
             <div>Функциональная кнопка</div>
           </div>
           <div>
-            <LifeBar
-              color={this.props.value.food > 20 ? YELLOW : RED}
-              value={this.props.value.food}
-              nameValue={"Питание"}
-            />
+            <Link
+              style={{ color: "black", textDecoration: "none" }}
+              to={`/home?room=kitchen`}
+            >
+              <LifeBar
+                color={this.props.value.food > 20 ? YELLOW : RED}
+                value={this.props.value.food}
+                nameValue={"Питание"}
+              />
+            </Link>
           </div>
           <div>
-            <LifeBar
-              color={this.props.value.sleep > 20 ? PURPLE : RED}
-              value={this.props.value.sleep}
-              nameValue={"Сон"}
-            />
+            <Link
+              style={{ color: "black", textDecoration: "none" }}
+              to={`/home?room=bedroom`}
+            >
+              <LifeBar
+                color={this.props.value.sleep > 20 ? PURPLE : RED}
+                value={this.props.value.sleep}
+                nameValue={"Сон"}
+              />
+            </Link>
           </div>
         </div>
         <NavigationMap />
