@@ -5,13 +5,7 @@ import home from "../content/images/home.jpg";
 import hello from "../content/pet/Hello.json";
 import { Bath, Bed, Heartbeat, Utensils } from "../content/Icons";
 import FunctionMenu from "../components/FunctionMenu";
-
-const getParameterFromUrl = param => {
-  let urlString = window.location.href;
-  let url = new URL(urlString);
-  let vars = url.searchParams.get(param);
-  return vars;
-};
+import { getParameterFromUrl } from "../scripts/scripts";
 
 export default class Home extends React.Component {
   constructor(props) {

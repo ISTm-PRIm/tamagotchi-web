@@ -1,0 +1,6 @@
+export const getParameterFromUrl = param => {
+  let urlString = window.location.href;
+  let url = new URL(urlString);
+  let vars = url.searchParams.get(param);
+  return vars;
+};
