@@ -11,11 +11,11 @@ const RouterConf = () => {
     <Router>
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/tamagotchiHome" component={Home} />
-        <Route exact path="/tamagotchiHome/:id?" component={TamagotchiHouse} />
+        <Route path="/home:url?" component={Home} />
+        {/* <Route exact path="/tamagotchiHome/:id?" component={TamagotchiHouse} /> */}
         <Route path="/sign_in" component={SignInPage} />
         <Route path="/sign_up" component={SignInPage} />
-        <Route path="/rulse" component={Rules} />
+        {/* <Route path="/rulse" component={Rules} /> */}
         <Route component={Error404} />
       </Switch>
     </Router>

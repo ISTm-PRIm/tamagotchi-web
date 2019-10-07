@@ -133,7 +133,7 @@ class SignInForm extends React.Component {
               backgroundColor: "#007AFF",
               color: "rgba(255,255,255,1)"
             }}
-            to={"/tamagotchiHome"}
+            to={`/home?room=${"bedroom"}`}
           >
             Тестовая комната
           </Link>

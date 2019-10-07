@@ -3,7 +3,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleLeft,
   faAngleRight,
-  faQuestion
+  faQuestion,
+  faSignOutAlt,
+  faUtensils,
+  faBed,
+  faBath,
+  faHeartbeat
 } from "@fortawesome/free-solid-svg-icons";
 
 import {
@@ -26,6 +31,26 @@ export function AngleRight() {
 
 export function Question() {
   return <FontAwesomeIcon icon={faQuestion} color={"#000000"} size="1x" />;
+}
+
+export function SignOut() {
+  return <FontAwesomeIcon icon={faSignOutAlt} color={"#000000"} size="1x" />;
+}
+
+export function Bed() {
+  return <FontAwesomeIcon icon={faBed} color={"#000000"} size="1x" />;
+}
+
+export function Bath() {
+  return <FontAwesomeIcon icon={faBath} color={"#000000"} size="1x" />;
+}
+
+export function Heartbeat() {
+  return <FontAwesomeIcon icon={faHeartbeat} color={"#000000"} size="1x" />;
+}
+
+export function Utensils() {
+  return <FontAwesomeIcon icon={faUtensils} color={"#000000"} size="1x" />;
 }
 
 // export function Instagram() {

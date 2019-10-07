@@ -25,9 +25,6 @@ export default function SignInPage() {
 }
 
 const style = {
-  fon: {
-    // paddingTop: 30,
-  },
   link: {
     display: "block",
     margin: 10,
@@ -58,8 +55,6 @@ const style = {
   },
   form: {
     width: 380
-    // borderRadius: 3,
-    // padding: 30
   },
   linkPass: {
     color: "#007AFF",
