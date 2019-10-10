@@ -3,6 +3,7 @@ import React from "react";
 import Pet from "../components/Pet";
 import home from "../content/images/home.jpg";
 import hello from "../content/pet/Hello.json";
+import test from "../content/audio/test.mp3";
 import { Bath, Bed, Heartbeat, Utensils } from "../content/Icons";
 import FunctionMenu from "../components/FunctionMenu";
 import { getParameterFromUrl } from "../scripts/scripts";
@@ -11,6 +12,11 @@ export default class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = { petState: "HELLO" };
+    this.audio = new Audio(test);
+  }
+
+  componentDidMount() {
+    this.audio.play();
   }
 
   render() {
