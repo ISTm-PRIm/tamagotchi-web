@@ -109,50 +109,6 @@ class FunctionMenu extends React.Component {
           </div>
         </div>
         <NavigationMap />
-        {/* <div
-          style={{
-            border: "1px solid",
-            margin: "0px 10px 0px 0px",
-            padding: 5
-          }}
-        >
-          <div style={{ display: "flex", justifyContent: "space-around" }}>
-            <div
-              style={style.button}
-              onClick={() => {
-                this.setState({ isShowHelp: true });
-              }}
-            >
-              Ванна
-            </div>
-            <div
-              style={style.button}
-              onClick={() => {
-                document.location.href = `/sign_in`;
-              }}
-            >
-              Кухня
-            </div>
-          </div>
-          <div style={{ display: "flex", justifyContent: "space-around" }}>
-            <div
-              style={style.button}
-              onClick={() => {
-                this.setState({ isShowHelp: true });
-              }}
-            >
-              Спальня
-            </div>
-            <div
-              style={style.button}
-              onClick={() => {
-                document.location.href = `/sign_in`;
-              }}
-            >
-              Больница
-            </div>
-          </div>
-        </div> */}
         <div
           style={{
             border: "1px solid",
