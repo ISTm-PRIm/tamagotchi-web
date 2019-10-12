@@ -77,7 +77,7 @@ class FunctionMenu extends React.Component {
             <div
               style={style.button}
               onClick={() => {
-                this.props.button.click();
+                this.props.click(this.props.button.state);
               }}
             >
               {this.props.button.icon}
