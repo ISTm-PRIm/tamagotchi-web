@@ -1,7 +1,13 @@
 import React from "react";
 
 import Pet from "../components/Pet";
+
 import home from "../content/images/home.jpg";
+import bathroom from "../content/images/bathroom.jpg";
+import bedroom from "../content/images/bedroom.jpg";
+import hospital from "../content/images/hospital.jpg";
+import kitchen from "../content/images/kitchen.jpg";
+
 import hello from "../content/pet/Hello.json";
 import sleep from "../content/pet/Sleep.json";
 import dead from "../content/pet/RIP.json";
@@ -10,7 +16,8 @@ import bath from "../content/pet/Bathroom.json";
 import bad from "../content/pet/Bad.json";
 import goodBoy from "../content/pet/Create.json";
 import r from "../content/pet/Anim.json";
-import test from "../content/audio/test.mp3";
+
+import music from "../content/audio/music.mp3";
 import { Bath, Bed, Heartbeat, Utensils } from "../content/Icons";
 import FunctionMenu from "../components/FunctionMenu";
 import { getParameterFromUrl, randomInteger } from "../scripts/scripts";
@@ -27,7 +34,7 @@ export default class Home extends React.Component {
         sleep: randomInteger(0, 100)
       }
     };
-    // this.audio = new Audio(test);
+    this.audio = new Audio(music);
   }
 
   getPetImage(state) {
@@ -67,7 +74,7 @@ export default class Home extends React.Component {
       }
     }
     //getData()
-    // this.audio.play();
+    this.audio.play();
   }
 
   componentDidUpdate() {
@@ -110,7 +117,7 @@ const getRoomInfoByName = (name = "bedroom") => {
   const rooms = {
     bedroom: {
       name: "Спальня",
-      img: home,
+      img: bedroom,
       button: {
         icon: (
           <>
@@ -122,7 +129,7 @@ const getRoomInfoByName = (name = "bedroom") => {
     },
     bath: {
       name: "Ванная",
-      img: home,
+      img: bathroom,
       button: {
         icon: (
           <>
@@ -134,7 +141,7 @@ const getRoomInfoByName = (name = "bedroom") => {
     },
     kitchen: {
       name: "Кухня",
-      img: home,
+      img: kitchen,
       button: {
         icon: (
           <>
@@ -146,7 +153,7 @@ const getRoomInfoByName = (name = "bedroom") => {
     },
     hospital: {
       name: "Больница",
-      img: home,
+      img: hospital,
       button: {
         icon: (
           <>
@@ -160,7 +167,3 @@ const getRoomInfoByName = (name = "bedroom") => {
 
   return rooms[name] || rooms.bedroom;
 };
-
-//Уложить спать
-// Кормить
-//  Купать
