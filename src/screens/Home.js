@@ -112,7 +112,14 @@ export default class Home extends React.Component {
             this.setState({ petState: state });
           }}
         />
-        <Pet img={this.getPetImage(this.state.petState)} />
+
+        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0 }}>
+          <Pet
+            height={500}
+            width={500}
+            img={this.getPetImage(this.state.petState)}
+          />
+        </div>
       </div>
     );
   }
