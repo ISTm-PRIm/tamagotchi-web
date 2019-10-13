@@ -63,3 +63,21 @@ code {
   border-radius: 5px;
   height: 50px;
 }
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+    transform: scale(1.0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.2);
+  }
+}
+
+.paw {
+  margin: 20px;
+  animation: blink 1s infinite linear;
+  animation-direction: alternate;
+}
