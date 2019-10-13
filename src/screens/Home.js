@@ -34,7 +34,12 @@ export default class Home extends React.Component {
         sleep: randomInteger(0, 100)
       }
     };
-    this.audio = new Audio(music);
+
+    try {
+      this.audio = new Audio(music);
+    } catch (error) {
+      console.log("audio error -", error);
+    }
   }
 
   getPetImage(state) {
