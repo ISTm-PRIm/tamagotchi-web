@@ -22,6 +22,8 @@ import { Bath, Bed, Heartbeat, Utensils } from "../content/Icons";
 import FunctionMenu from "../components/FunctionMenu";
 import { getParameterFromUrl, randomInteger } from "../scripts/scripts";
 import NavigationMap from "../components/NavigationMap";
+import LifebarLeft from "../components/lifebar-left";
+import LifebarRight from "../components/lifebar-right";
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -117,8 +119,13 @@ export default class Home extends React.Component {
         </div>
 
         <div className={'content'}>
-          <div className={'navbar'}>
-            <NavigationMap />
+          <div className={'lifebar-left'}>
+            <LifebarLeft value={this.state.petValue}
+                         nameRoom={roomInfo.name}
+                         button={roomInfo.button}
+                         click={state => {
+                           this.setState({ petState: state });
+                         }}/>
           </div>
 
           <div className={'pet-area'}>
@@ -128,7 +135,21 @@ export default class Home extends React.Component {
               img={this.getPetImage(this.state.petState)}
             />
           </div>
+
+          <div className={'lifebar-right'}>
+            <LifebarRight value={this.state.petValue}
+                         nameRoom={roomInfo.name}
+                         button={roomInfo.button}
+                         click={state => {
+                           this.setState({ petState: state });
+                         }}/>
+          </div>
         </div>
+
+        <div className={'navbar'}>
+          <NavigationMap />
+        </div>
+
       </div>
     );
   }
@@ -142,7 +163,7 @@ const getRoomInfoByName = (name = "bedroom") => {
       button: {
         icon: (
           <>
-            <Bed /> | Уложить спать
+            <Bed /> Уложить спать
           </>
         ),
         state: "SLEEP"
@@ -154,7 +175,7 @@ const getRoomInfoByName = (name = "bedroom") => {
       button: {
         icon: (
           <>
-            <Bath /> | Купать
+            <Bath /> Купать
           </>
         ),
         state: "BATH"
@@ -166,7 +187,7 @@ const getRoomInfoByName = (name = "bedroom") => {
       button: {
         icon: (
           <>
-            <Utensils /> | Кормить
+            <Utensils /> Кормить
           </>
         ),
         state: "EAT"
@@ -178,7 +199,7 @@ const getRoomInfoByName = (name = "bedroom") => {
       button: {
         icon: (
           <>
-            <Heartbeat /> | Лечить
+            <Heartbeat /> Лечить
           </>
         ),
         state: "HEARTBEAT"
