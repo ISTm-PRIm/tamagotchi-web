@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Google } from "../../content/Icons";
+import { Google, Facebook, VK } from "../../content/Icons";
+import LoginButton from "../../components/LoginButton";
 
 class SignInForm extends React.Component {
   constructor(props) {
@@ -8,7 +9,6 @@ class SignInForm extends React.Component {
     this.state = { email: "", password: "" };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
   handleSubmit = async event => {
     event.preventDefault();
 
@@ -51,9 +51,7 @@ class SignInForm extends React.Component {
         }}
       >
         <p style={{ fontFamily: "GraphikLCG-Semibold", textAlign: "center" }}>
-          {window.location.href.indexOf("sign_in") !== -1
-            ? "Авторизация"
-            : "Регистрация"}
+          Войти через ...
         </p>
         <div
           style={{
@@ -63,36 +61,13 @@ class SignInForm extends React.Component {
             paddingBottom: 10
           }}
         >
-          <div
-            style={{
-              backgroundColor: "red",
-              display: "flex",
-              padding: 10,
-              borderRadius: 5,
-              width: "100%"
-            }}
-          >
-            <div>
-              <Google />
-            </div>
-            <div
-              style={{
-                backgroundColor: "#ffffff",
-                paddingLeft: 1,
-                marginRight: 10,
-                marginLeft: 10
-              }}
-            />
-            <div
-              style={{
-                color: "#ffffff",
-                fontFamily: "GraphikLCG-Medium",
-                margin: "auto"
-              }}
-            >
-              Google
-            </div>
-          </div>
+          <LoginButton icon={<Google />} name={"Google"} color={"red"} />
+          <LoginButton icon={<VK />} name={"Вконтакте"} color={"#4a76a8"} />
+          <LoginButton
+            icon={<Facebook />}
+            name={"Facebook"}
+            color={"#385898"}
+          />
         </div>
         <div
           style={{
@@ -101,29 +76,6 @@ class SignInForm extends React.Component {
             flexWrap: "wrap"
           }}
         >
-          {window.location.href.indexOf("sign_in") !== -1 ? (
-            <div
-              style={{
-                ...style.display,
-                ...style.button,
-                textDecoration: "none",
-                alignItems: "center",
-                backgroundColor: "#007AFF",
-                marginBottom: 10
-              }}
-            >
-              <Link
-                style={{
-                  textDecoration: "none",
-                  color: "rgba(255,255,255,1)"
-                }}
-                to={"/sign_up"}
-              >
-                Регистрация
-              </Link>
-            </div>
-          ) : null}
-
           <Link
             style={{
               ...style.display,

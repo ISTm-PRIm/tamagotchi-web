@@ -11,7 +11,11 @@ import {
   faHeartbeat
 } from "@fortawesome/free-solid-svg-icons";
 
-import { faGoogle } from "@fortawesome/free-brands-svg-icons";
+import {
+  faVk,
+  faFacebookSquare,
+  faGoogle
+} from "@fortawesome/free-brands-svg-icons";
 
 export function AngleLeft() {
   return <FontAwesomeIcon icon={faAngleLeft} color={"#000000"} size="3x" />;
@@ -47,4 +51,14 @@ export function Utensils() {
 
 export function Google() {
   return <FontAwesomeIcon icon={faGoogle} color={"#ffffff"} size="1x" />;
+}
+
+export function VK() {
+  return <FontAwesomeIcon icon={faVk} color={"#ffffff"} size="1x" />;
+}
+
+export function Facebook() {
+  return (
+    <FontAwesomeIcon icon={faFacebookSquare} color={"#ffffff"} size="1x" />
+  );
 }
