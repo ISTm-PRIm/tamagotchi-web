@@ -77,7 +77,7 @@ code {
 }
 
 .paw {
-  margin: 20px;
+  width: 100%;
   animation: blink 1s infinite linear;
   animation-direction: alternate;
 }

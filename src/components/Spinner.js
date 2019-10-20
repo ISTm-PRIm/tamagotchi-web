@@ -9,7 +9,7 @@ const wrapper = {
 export default function Spinner() {
     return (
         <div style={wrapper} className={'wrapper'}>
-            <img className={'paw'} alt="paw" src={paw} width="50"/>
+            <img className={'paw'} alt="paw" src={paw}/>
         </div>
     );
 }
