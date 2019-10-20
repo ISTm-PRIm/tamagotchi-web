@@ -5,7 +5,6 @@ import { Question, SignOut } from "../content/Icons";
 import Modal from "./Modal";
 import Help from "./Help";
 import { BLUE, YELLOW, RED, GREEN, PURPLE } from "../content/color";
-import NavigationMap from "./NavigationMap";
 
 class FunctionMenu extends React.Component {
   constructor(props) {
@@ -108,7 +107,6 @@ class FunctionMenu extends React.Component {
             </Link>
           </div>
         </div>
-        <NavigationMap />
         <div
           style={{
             border: "1px solid",

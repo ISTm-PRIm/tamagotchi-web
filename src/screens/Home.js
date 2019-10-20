@@ -21,6 +21,7 @@ import music from "../content/audio/music.mp3";
 import { Bath, Bed, Heartbeat, Utensils } from "../content/Icons";
 import FunctionMenu from "../components/FunctionMenu";
 import { getParameterFromUrl, randomInteger } from "../scripts/scripts";
+import NavigationMap from "../components/NavigationMap";
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -95,7 +96,7 @@ export default class Home extends React.Component {
     }
 
     return (
-      <div
+      <div className={'container'}
         style={{
           position: "fixed",
           backgroundImage: `url(${roomInfo.img})`,
@@ -104,21 +105,29 @@ export default class Home extends React.Component {
           height: "100%"
         }}
       >
-        <FunctionMenu
-          value={this.state.petValue}
-          nameRoom={roomInfo.name}
-          button={roomInfo.button}
-          click={state => {
-            this.setState({ petState: state });
-          }}
-        />
-
-        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0 }}>
-          <Pet
-            height={500}
-            width={500}
-            img={this.getPetImage(this.state.petState)}
+        <div className={'header'}>
+          <FunctionMenu
+            value={this.state.petValue}
+            nameRoom={roomInfo.name}
+            button={roomInfo.button}
+            click={state => {
+              this.setState({ petState: state });
+            }}
           />
+        </div>
+
+        <div className={'content'}>
+          <div className={'navbar'}>
+            <NavigationMap />
+          </div>
+
+          <div className={'pet-area'}>
+            <Pet
+              height={500}
+              width={500}
+              img={this.getPetImage(this.state.petState)}
+            />
+          </div>
         </div>
       </div>
     );
