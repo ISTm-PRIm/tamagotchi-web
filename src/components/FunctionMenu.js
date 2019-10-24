@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import LifeBar from "./LifeBar";
-import { Question, SignOut } from "../content/Icons";
+import { Question, SignOut, Pause, Play } from "../content/Icons";
 import Modal from "./Modal";
 import Help from "./Help";
-import { BLUE, YELLOW, RED, GREEN, PURPLE } from "../content/color";
+import { BLUE, YELLOW, RED, GREEN, PURPLE, ORANGE } from "../content/color";
 import NavigationMap from "./NavigationMap";
 
 class FunctionMenu extends React.Component {
@@ -40,6 +40,18 @@ class FunctionMenu extends React.Component {
             paddingRight: 50
           }}
         >
+          <div>
+            <Link
+              style={{ color: "black", textDecoration: "none" }}
+              to={`/home?room=livingroom`}
+            >
+              <LifeBar
+                color={this.props.value.mood > 20 ? ORANGE : RED}
+                value={this.props.value.mood}
+                nameValue={"Настроение"}
+              />
+            </Link>
+          </div>
           <div>
             <Link
               style={{ color: "black", textDecoration: "none" }}
@@ -108,7 +120,6 @@ class FunctionMenu extends React.Component {
             </Link>
           </div>
         </div>
-        <NavigationMap />
         <div
           style={{
             border: "1px solid",
@@ -116,6 +127,14 @@ class FunctionMenu extends React.Component {
             margin: "0px 10px 0px 0px"
           }}
         >
+          <div
+            style={style.button}
+            onClick={() => {
+              this.props.music();
+            }}
+          >
+            {this.props.play ? <Play /> : <Pause />}
+          </div>
           <div
             style={style.button}
             onClick={() => {
@@ -142,7 +161,6 @@ export default FunctionMenu;
 
 const style = {
   button: {
-    // margin: 10,
     padding: 10,
     backgroundColor: "azure",
     borderRadius: 20,

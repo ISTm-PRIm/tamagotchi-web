@@ -111,3 +111,25 @@ code {
 .margin_auto {
   margin: auto;
 }
+
+.form {
+  width: 380px;
+  border-radius: 3px;
+  padding: 20px;
+}
+
+@media (max-width: 720px) {
+  .form {
+    width: 380px;
+    border-radius: 3px;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 320px) {
+  .form {
+    width: 300px;
+    border-radius: 3px;
+    padding: 20px;
+  }
+}

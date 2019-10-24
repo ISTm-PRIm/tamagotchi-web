@@ -26,10 +26,8 @@ export default class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      musicOn: false,
       petState: "HELLO",
       petValue: {
-        mood: randomInteger(0, 100),
         health: randomInteger(0, 100),
         hygiene: randomInteger(0, 100),
         food: randomInteger(0, 100),
@@ -73,7 +71,6 @@ export default class Home extends React.Component {
     } else {
       if (
         this.state.petValue.health <= 25 ||
-        this.state.petValue.mood <= 20 ||
         this.state.petValue.hygiene <= 20 ||
         this.state.petValue.food <= 20 ||
         this.state.petValue.sleep <= 20
@@ -82,7 +79,6 @@ export default class Home extends React.Component {
       }
     }
     //getData()
-    this.setState({ musicOn: true });
     this.audio.play();
   }
 
@@ -115,15 +111,6 @@ export default class Home extends React.Component {
           click={state => {
             this.setState({ petState: state });
           }}
-          music={() => {
-            this.setState({ musicOn: !this.state.musicOn });
-            if (this.state.musicOn) {
-              this.audio.play();
-            } else {
-              this.audio.pause();
-            }
-          }}
-          play={this.state.musicOn}
         />
 
         <div style={{ position: "absolute", bottom: 0, left: 0, right: 0 }}>
@@ -142,7 +129,7 @@ const getRoomInfoByName = (name = "bedroom") => {
   const rooms = {
     livingroom: {
       name: "Гостинная",
-      img: home,
+      img: bedroom,
       button: {
         icon: (
           <>

@@ -8,7 +8,9 @@ import {
   faUtensils,
   faBed,
   faBath,
-  faHeartbeat
+  faHeartbeat,
+  faPlay,
+  faPause
 } from "@fortawesome/free-solid-svg-icons";
 
 import {
@@ -31,6 +33,14 @@ export function Question() {
 
 export function SignOut() {
   return <FontAwesomeIcon icon={faSignOutAlt} color={"#000000"} size="1x" />;
+}
+
+export function Play() {
+  return <FontAwesomeIcon icon={faPlay} color={"#000000"} size="1x" />;
+}
+
+export function Pause() {
+  return <FontAwesomeIcon icon={faPause} color={"#000000"} size="1x" />;
 }
 
 export function Bed() {

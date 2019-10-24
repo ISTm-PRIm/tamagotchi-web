@@ -1,5 +1,5 @@
-import cookie from "react-cookies";
-import { URL_HOST } from "../content/const";
+// import cookie from "react-cookies";
+// import { URL_HOST } from "../content/const";
 // PROXY: https://tamagochi-server.herokuapp.com/
 // const URL_ENV = `${URL_HOST}/services/rest/`;
 // const LOGIN_URL = `${URL_HOST}/services/login`;
@@ -115,11 +115,11 @@ export const login = async data => {
     datas.accessToken
   );
 
-  cookie.save(
-    "token",
-    { token: datas.accessToken, profile: profile },
-    { path: "/" }
-  );
+  // cookie.save(
+  //   "token",
+  //   { token: datas.accessToken, profile: profile },
+  //   { path: "/" }
+  // );
 
   return { error: false };
 };

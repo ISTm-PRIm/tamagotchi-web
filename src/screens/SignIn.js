@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Google, Facebook, VK } from "../content/Icons";
 import LoginButton from "../components/LoginButton";
 import fon from "../content/images/sign_in_fone.jpg";
+import { VKColor, FacebookColor, GoogleColor } from "../content/color";
 import "../index.css";
 
 export default class SignInPage extends React.Component {
@@ -51,7 +52,7 @@ export default class SignInPage extends React.Component {
       >
         {/* <p style={style.namePage}>Тамагочи "Ветерок"</p> */}
         <div style={{ ...style.display, ...style.indent }}>
-          <div style={style.form}>
+          <div className="form">
             <form
               onSubmit={this.handleSubmit}
               style={{
@@ -80,16 +81,16 @@ export default class SignInPage extends React.Component {
                   paddingBottom: 10
                 }}
               >
-                <LoginButton icon={<Google />} name={"Google"} color={"red"} />
                 <LoginButton
-                  icon={<VK />}
-                  name={"Вконтакте"}
-                  color={"#4a76a8"}
+                  icon={<Google />}
+                  name={"Google"}
+                  color={GoogleColor}
                 />
+                <LoginButton icon={<VK />} name={"Вконтакте"} color={VKColor} />
                 <LoginButton
                   icon={<Facebook />}
                   name={"Facebook"}
-                  color={"#385898"}
+                  color={FacebookColor}
                 />
               </div>
               <div
@@ -108,7 +109,7 @@ export default class SignInPage extends React.Component {
                     backgroundColor: "#007AFF",
                     color: "rgba(255,255,255,1)"
                   }}
-                  to={`/home?room=${"bedroom"}`}
+                  to={`/home?room=${"livingroom"}`}
                 >
                   Тестовая комната
                 </Link>
@@ -140,8 +141,6 @@ const style = {
     position: "absolute",
     width: "100%",
     height: "100%",
-    // paddingTop: 145,
-    // paddingBottom: 145,
     justifyContent: "center",
     alignItems: "center"
   },
@@ -154,7 +153,7 @@ const style = {
   form: {
     width: 380,
     borderRadius: 3,
-    padding: 30
+    padding: 20
   },
   linkPass: {
     color: "#007AFF",

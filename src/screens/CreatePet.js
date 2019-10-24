@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Pet from "../components/Pet";
-import { InputWithLength } from "../components/CustomInput";
+import InputWithLength from "../components/CustomInput";
 import goodBoy from "../content/pet/Create.json";
 import fon from "../content/images/sign_in_fone.jpg";
+import { createPet } from "../scripts/api";
 import "../index.css";
 
-export default class SignInPage extends React.Component {
+export default class CreatePet extends React.Component {
   constructor(props) {
     super(props);
     this.state = { name: "" };
@@ -15,26 +16,24 @@ export default class SignInPage extends React.Component {
   handleSubmit = async event => {
     event.preventDefault();
 
-    // if (this.state.email.length !== 0 && this.state.password.length !== 0) {
-    //   const data = await login({
-    //     email: this.state.email,
-    //     password: this.state.password
-    //   });
+    if (this.state.name.length >= 3) {
+      const data = await createPet({
+        name: this.state.name,
+        password: "cookie.idUser"
+      });
 
-    //   if (data.error) {
-    //     alert(data.message);
-    //   } else {
-    //     cookie.load("token").profile.role === "ADMIN"
-    //       ? (document.location.href = "/feed/social_network?page=1")
-    //       : (document.location.href = "/shop");
-    //   }
-    // } else {
-    //   this.setState({
-    //     email: this.state.email,
-    //     password: this.state.password
-    //   });
-    //   alert("Вы не ввели данные для авторизации в системе.");
-    // }
+      if (data.error) {
+        alert(data.message);
+      } else {
+        document.location.href = "/home?room=livingroom";
+      }
+    } else {
+      this.setState({
+        email: this.state.email,
+        password: this.state.password
+      });
+      alert("Вы ввели не корректные данные для создания питомца");
+    }
   };
 
   componentDidMount() {}
