@@ -33,6 +33,15 @@ class FunctionMenu extends React.Component {
             </div>
         </div>
 
+        <div className={'menu-left'}>
+          <div className={'music-btn'}
+               onClick={() => {
+                 this.props.music();
+               }}>
+            {this.props.play ? <Play /> : <Pause />}
+          </div>
+        </div>
+
         <div className={'menu-right'}>
           <div className={'help-btn'}
             onClick={() => {

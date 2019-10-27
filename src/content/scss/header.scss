@@ -144,5 +144,32 @@
         }
       }
     }
+
+    .menu-left {
+      display: flex;
+      position: absolute;
+      top: 10px;
+      left: 0;
+
+      .music-btn {
+        width: 35px;
+        height: 35px;
+        padding: 6px 10px;
+        margin-left: 10px;
+        background-color: #C06C84;
+        cursor: pointer;
+        border-radius: 50%;
+
+        &:hover {
+          background-color: #a25a6e;
+          transform: scale(1.2, 1.2);
+          transition: .1s ease-out 0.1s;
+        }
+
+        svg path {
+          fill: #eeeeee;
+        }
+      }
+    }
   }
 }
