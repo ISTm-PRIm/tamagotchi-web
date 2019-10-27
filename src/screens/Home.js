@@ -22,8 +22,10 @@ import { Bath, Bed, Heartbeat, Utensils } from "../content/Icons";
 import FunctionMenu from "../components/FunctionMenu";
 import { getParameterFromUrl, randomInteger } from "../scripts/scripts";
 import NavigationMap from "../components/NavigationMap";
+import Modal from "../components/Modal";
 import LifebarLeft from "../components/lifebar-left";
 import LifebarRight from "../components/lifebar-right";
+import Spinner from "../components/Spinner";
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -154,16 +156,14 @@ export default class Home extends React.Component {
               img={this.getPetImage(this.state.petState)}
             />
             {this.state.petValue.health === 0 ? (
-              <Link
-                className="active_button"
-                style={{
-                  right: 10,
-                  bottom: 10
-                }}
-                to={"/create_pet"}
-              >
-                Создать нового питомца
-              </Link>
+              <Modal isShowModal={'true'}>
+                <Link
+                  className="active_button"
+                  to={"/create_pet"}
+                >
+                  Создать нового питомца
+                </Link>
+              </Modal>
             ) : null}
           </div>
 
