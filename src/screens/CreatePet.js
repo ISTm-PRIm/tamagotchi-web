@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Pet from "../components/Pet";
 import InputWithLength from "../components/CustomInput";
 import goodBoy from "../content/pet/Create.json";
@@ -35,8 +34,6 @@ export default class CreatePet extends React.Component {
       alert("Вы ввели не корректные данные для создания питомца");
     }
   };
-
-  componentDidMount() {}
 
   render() {
     return (
@@ -93,7 +90,7 @@ export default class CreatePet extends React.Component {
                   flexWrap: "wrap"
                 }}
               >
-                <Link
+                <div
                   style={{
                     ...style.display,
                     ...style.button,
@@ -102,10 +99,9 @@ export default class CreatePet extends React.Component {
                     backgroundColor: "#007AFF",
                     color: "rgba(255,255,255,1)"
                   }}
-                  to={`/home?room=${"bedroom"}`}
                 >
                   Создать
-                </Link>
+                </div>
               </div>
             </form>
           </div>
@@ -134,8 +130,6 @@ const style = {
     position: "absolute",
     width: "100%",
     height: "100%",
-    // paddingTop: 145,
-    // paddingBottom: 145,
     justifyContent: "center",
     alignItems: "center"
   },
@@ -146,7 +140,6 @@ const style = {
     borderRadius: 3
   },
   form: {
-    // width: 380,
     borderRadius: 3,
     padding: 30
   },

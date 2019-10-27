@@ -5,7 +5,6 @@ import { Question, SignOut, Pause, Play } from "../content/Icons";
 import Modal from "./Modal";
 import Help from "./Help";
 import { BLUE, YELLOW, RED, GREEN, PURPLE, ORANGE } from "../content/color";
-import NavigationMap from "./NavigationMap";
 
 class FunctionMenu extends React.Component {
   constructor(props) {
@@ -83,7 +82,8 @@ class FunctionMenu extends React.Component {
                 textAlign: "center"
               }}
             >
-              {this.props.nameRoom}
+              {"Тестовый питомец"}
+              {/* {this.props.nameRoom} Coocie*/}
             </h3>
 
             <div

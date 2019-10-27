@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 import Pet from "../components/Pet";
 
 import home from "../content/images/home.jpg";
@@ -30,7 +30,7 @@ export default class Home extends React.Component {
       petState: "HELLO",
       petValue: {
         mood: randomInteger(0, 100),
-        health: randomInteger(0, 100),
+        health: 0,
         hygiene: randomInteger(0, 100),
         food: randomInteger(0, 100),
         sleep: randomInteger(0, 100)
@@ -69,7 +69,16 @@ export default class Home extends React.Component {
 
   componentDidMount() {
     if (this.state.petValue.health === 0) {
-      this.setState({ petState: "DEAD" });
+      this.setState({
+        petState: "DEAD",
+        petValue: {
+          mood: 0,
+          health: 0,
+          hygiene: 0,
+          food: 0,
+          sleep: 0
+        }
+      });
     } else {
       if (
         this.state.petValue.health <= 25 ||
@@ -132,6 +141,18 @@ export default class Home extends React.Component {
             width={500}
             img={this.getPetImage(this.state.petState)}
           />
+          {this.state.petValue.health === 0 ? (
+            <Link
+              className="active_button"
+              style={{
+                right: 10,
+                bottom: 10
+              }}
+              to={"/create_pet"}
+            >
+              Создать нового питомца
+            </Link>
+          ) : null}
         </div>
       </div>
     );

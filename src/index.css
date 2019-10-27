@@ -108,6 +108,16 @@ code {
   font-family: "GraphikLCG-Medium";
 }
 
+.active_button {
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #007aff;
+  position: absolute;
+  color: #ffffff;
+  text-decoration: none;
+  font-family: "GraphikLCG-Medium";
+}
+
 .margin_auto {
   margin: auto;
 }

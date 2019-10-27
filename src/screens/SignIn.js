@@ -109,7 +109,7 @@ export default class SignInPage extends React.Component {
                     backgroundColor: "#007AFF",
                     color: "rgba(255,255,255,1)"
                   }}
-                  to={`/home?room=${"livingroom"}`}
+                  to={`/home?room=livingroom`}
                 >
                   Тестовая комната
                 </Link>
