@@ -21,6 +21,9 @@ import music from "../content/audio/music.mp3";
 import { Bath, Bed, Heartbeat, Utensils } from "../content/Icons";
 import FunctionMenu from "../components/FunctionMenu";
 import { getParameterFromUrl, randomInteger } from "../scripts/scripts";
+import NavigationMap from "../components/NavigationMap";
+import LifebarLeft from "../components/lifebar-left";
+import LifebarRight from "../components/lifebar-right";
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -29,7 +32,6 @@ export default class Home extends React.Component {
       musicOn: false,
       petState: "HELLO",
       petValue: {
-        mood: randomInteger(0, 100),
         health: 0,
         hygiene: randomInteger(0, 100),
         food: randomInteger(0, 100),
@@ -72,7 +74,6 @@ export default class Home extends React.Component {
       this.setState({
         petState: "DEAD",
         petValue: {
-          mood: 0,
           health: 0,
           hygiene: 0,
           food: 0,
@@ -82,7 +83,6 @@ export default class Home extends React.Component {
     } else {
       if (
         this.state.petValue.health <= 25 ||
-        this.state.petValue.mood <= 20 ||
         this.state.petValue.hygiene <= 20 ||
         this.state.petValue.food <= 20 ||
         this.state.petValue.sleep <= 20
@@ -108,7 +108,7 @@ export default class Home extends React.Component {
     }
 
     return (
-      <div
+      <div className={'container'}
         style={{
           position: "fixed",
           backgroundImage: `url(${roomInfo.img})`,
@@ -117,43 +117,70 @@ export default class Home extends React.Component {
           height: "100%"
         }}
       >
-        <FunctionMenu
-          value={this.state.petValue}
-          nameRoom={roomInfo.name}
-          button={roomInfo.button}
-          click={state => {
-            this.setState({ petState: state });
-          }}
-          music={() => {
-            this.setState({ musicOn: !this.state.musicOn });
-            if (this.state.musicOn) {
-              this.audio.play();
-            } else {
-              this.audio.pause();
-            }
-          }}
-          play={this.state.musicOn}
-        />
-
-        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0 }}>
-          <Pet
-            height={500}
-            width={500}
-            img={this.getPetImage(this.state.petState)}
+        <div className={'header'}>
+          <FunctionMenu
+            value={this.state.petValue}
+            nameRoom={roomInfo.name}
+            button={roomInfo.button}
+            click={state => {
+              this.setState({ petState: state });
+            }}
+            music={() => {
+              this.setState({ musicOn: !this.state.musicOn });
+              if (this.state.musicOn) {
+                this.audio.play();
+              } else {
+                this.audio.pause();
+              }
+            }}
+            play={this.state.musicOn}
           />
-          {this.state.petValue.health === 0 ? (
-            <Link
-              className="active_button"
-              style={{
-                right: 10,
-                bottom: 10
-              }}
-              to={"/create_pet"}
-            >
-              Создать нового питомца
-            </Link>
-          ) : null}
         </div>
+
+        <div className={'content'}>
+          <div className={'lifebar-left'}>
+            <LifebarLeft value={this.state.petValue}
+                         nameRoom={roomInfo.name}
+                         button={roomInfo.button}
+                         click={state => {
+                           this.setState({ petState: state });
+                         }}/>
+          </div>
+
+          <div className={'pet-area'}>
+            <Pet
+              height={500}
+              width={500}
+              img={this.getPetImage(this.state.petState)}
+            />
+            {this.state.petValue.health === 0 ? (
+              <Link
+                className="active_button"
+                style={{
+                  right: 10,
+                  bottom: 10
+                }}
+                to={"/create_pet"}
+              >
+                Создать нового питомца
+              </Link>
+            ) : null}
+          </div>
+
+          <div className={'lifebar-right'}>
+            <LifebarRight value={this.state.petValue}
+                         nameRoom={roomInfo.name}
+                         button={roomInfo.button}
+                         click={state => {
+                           this.setState({ petState: state });
+                         }}/>
+          </div>
+        </div>
+
+        <div className={'navbar'}>
+          <NavigationMap />
+        </div>
+
       </div>
     );
   }
@@ -179,7 +206,7 @@ const getRoomInfoByName = (name = "bedroom") => {
       button: {
         icon: (
           <>
-            <Bed /> | Уложить спать
+            <Bed /> Уложить спать
           </>
         ),
         state: "SLEEP"
@@ -191,7 +218,7 @@ const getRoomInfoByName = (name = "bedroom") => {
       button: {
         icon: (
           <>
-            <Bath /> | Купать
+            <Bath /> Купать
           </>
         ),
         state: "BATH"
@@ -203,7 +230,7 @@ const getRoomInfoByName = (name = "bedroom") => {
       button: {
         icon: (
           <>
-            <Utensils /> | Кормить
+            <Utensils /> Кормить
           </>
         ),
         state: "EAT"
@@ -215,7 +242,7 @@ const getRoomInfoByName = (name = "bedroom") => {
       button: {
         icon: (
           <>
-            <Heartbeat /> | Лечить
+            <Heartbeat /> Лечить
           </>
         ),
         state: "HEARTBEAT"

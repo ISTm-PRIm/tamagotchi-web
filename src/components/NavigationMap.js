@@ -3,60 +3,30 @@ import { Link } from "react-router-dom";
 import { Bath, Bed, Heartbeat, Utensils } from "../content/Icons";
 export default function NavigationMap() {
   return (
-    <div
-      style={{
-        border: "1px solid",
-        margin: "0px 10px 0px 0px",
-        padding: 5
-      }}
-    >
-      <div style={{ display: "flex", justifyContent: "space-around" }}>
-        <Link
-          style={{ textDecoration: "none", color: "black" }}
-          to={`/home?room=bath`}
-        >
-          <div style={style.button}>
-            <Bath /> | Ванная
+    <div className={'navbar_content'}>
+        <Link to={`/home?room=bath`}>
+          <div className={'button'}>
+            <Bath /><span className={'button_text'}>Ванная</span>
           </div>
         </Link>
 
-        <Link
-          style={{ textDecoration: "none", color: "black" }}
-          to={`/home?room=kitchen`}
-        >
-          <div style={style.button}>
-            <Utensils /> | Кухня
+        <Link to={`/home?room=kitchen`}>
+          <div className={'button'}>
+            <Utensils /><span className={'button_text'}>Кухня</span>
           </div>
         </Link>
-      </div>
-      <div style={{ display: "flex", justifyContent: "space-around" }}>
-        <Link
-          style={{ textDecoration: "none", color: "black" }}
-          to={`/home?room=bedroom`}
-        >
-          <div style={style.button}>
-            <Bed /> | Спальня
+
+        <Link to={`/home?room=bedroom`}>
+          <div className={'button'}>
+            <Bed /><span className={'button_text'}>Спальня</span>
           </div>
         </Link>
-        <Link
-          style={{ textDecoration: "none", color: "black" }}
-          to={`/home?room=hospital`}
-        >
-          <div style={style.button}>
-            <Heartbeat /> | Больница
+
+        <Link to={`/home?room=hospital`}>
+          <div className={'button'}>
+            <Heartbeat /><span className={'button_text'}>Больница</span>
           </div>
         </Link>
-      </div>
     </div>
   );
 }
-
-const style = {
-  button: {
-    textDecoration: "none",
-    padding: 10,
-    backgroundColor: "azure",
-    borderRadius: 20,
-    border: "1px solid"
-  }
-};
