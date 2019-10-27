@@ -2,7 +2,7 @@ import React from "react";
 import { Question, SignOut } from "../content/Icons";
 import Modal from "./Modal";
 import Help from "./Help";
-import '../content/css/header.scss';
+import '../content/scss/header.scss';
 
 class FunctionMenu extends React.Component {
   constructor(props) {

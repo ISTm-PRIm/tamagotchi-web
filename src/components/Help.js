@@ -1,6 +1,6 @@
 import React from "react";
 import Spinner from './Spinner';
-import '../content/css/modal.scss';
+import '../content/scss/modal.scss';
 
 export default class Help extends React.Component {
   render() {

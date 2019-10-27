@@ -1,5 +1,5 @@
 import React from "react";
-import '../content/css/life-circle.scss';
+import '../content/scss/life-circle.scss';
 
 const LifeCircle = props => {
     let strokeDasharray = props.value + ", 100";
