@@ -110,12 +110,18 @@ code {
 
 .active_button {
   border-radius: 5px;
-  padding: 10px;
-  background-color: #007aff;
+  padding: 15px;
+  background-color: #c06c84;
   position: absolute;
-  color: #ffffff;
+  color: #eee;
   text-decoration: none;
   font-family: "GraphikLCG-Medium";
+}
+
+.active_button:hover {
+  background-color: #a25a6e;
+  transform: scale(1.1, 1.1);
+  transition: .1s ease-out 0.1s;
 }
 
 .margin_auto {
