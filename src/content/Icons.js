@@ -10,7 +10,8 @@ import {
   faBath,
   faHeartbeat,
   faPlay,
-  faPause
+  faPause,
+  faHome
 } from "@fortawesome/free-solid-svg-icons";
 
 import {
@@ -41,6 +42,10 @@ export function Play() {
 
 export function Pause() {
   return <FontAwesomeIcon icon={faPause} color={"#000000"} size="1x" />;
+}
+
+export function Home() {
+  return <FontAwesomeIcon icon={faHome} color={"#000000"} size="1x" />;
 }
 
 export function Bed() {

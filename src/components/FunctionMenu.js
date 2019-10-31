@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import LifeBar from "./LifeBar";
-import { Question, SignOut, Pause, Play } from "../content/Icons";
+import { Question, SignOut, Pause, Play, Home } from "../content/Icons";
 import Modal from "./Modal";
 import Help from "./Help";
 import { BLUE, YELLOW, RED, GREEN, PURPLE, ORANGE } from "../content/color";
@@ -39,7 +39,7 @@ class FunctionMenu extends React.Component {
             paddingRight: 50
           }}
         >
-          <div>
+          {/* <div>
             <Link
               style={{ color: "black", textDecoration: "none" }}
               to={`/home?room=livingroom`}
@@ -50,7 +50,7 @@ class FunctionMenu extends React.Component {
                 nameValue={"Настроение"}
               />
             </Link>
-          </div>
+          </div> */}
           <div>
             <Link
               style={{ color: "black", textDecoration: "none" }}
@@ -142,6 +142,14 @@ class FunctionMenu extends React.Component {
             }}
           >
             <Question />
+          </div>
+          <div
+            style={style.button}
+            onClick={() => {
+              document.location.href = `/home?room=livingroom`;
+            }}
+          >
+            <Home />
           </div>
           <div
             style={style.button}
