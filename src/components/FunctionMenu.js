@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import LifeBar from "./LifeBar";
 import { Question, SignOut, Pause, Play, Home } from "../content/Icons";
 import Modal from "./Modal";
 import Help from "./Help";
@@ -43,14 +42,9 @@ class FunctionMenu extends React.Component {
           >
             {this.props.play ? <Play /> : <Pause />}
           </div>
-          <div
-            className={"music-btn"}
-            onClick={() => {
-              document.location.href = `/home?room=livingroom`;
-            }}
-          >
+          <Link className={"music-btn"} to={`/home?room=livingroom`}>
             <Home />
-          </div>
+          </Link>
         </div>
 
         <div className={"menu-right"}>

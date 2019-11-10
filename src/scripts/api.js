@@ -3,8 +3,7 @@
 // PROXY: https://tamagochi-server.herokuapp.com/
 // const URL_ENV = `${URL_HOST}/services/rest/`;
 // const LOGIN_URL = `${URL_HOST}/services/login`;
-const URL_ENV = `/wylsa-admin/api/`;
-const LOGIN_URL = `/wylsa-admin/api/auth/login`;
+const URL_ENV = `/`;
 const URL = URL_ENV;
 
 const buildHeaders = (token, method, isFile = false) => {
@@ -104,7 +103,7 @@ const apiRequest = async (method, url, token = null) => {
 
 // Authentication Controller
 export const login = async data => {
-  const datas = await apiRequestWithBody("POST", LOGIN_URL, data);
+  const datas = await apiRequestWithBody("POST", URL, data);
   if (datas.error) {
     return datas;
   }
@@ -124,9 +123,22 @@ export const login = async data => {
   return { error: false };
 };
 
-// Create a pet
+//Pet Controller
 export const createPet = async data => {
-  return await apiRequestWithBody("POST", `${URL}pet/create`, data);
+  return await apiRequestWithBody("POST", `${URL}pet/create`, data, {
+    token: {
+      token:
+        "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzIiwiaWF0IjoxNTczMzg2MjEyLCJleHAiOjE1NzQyNTAyMTJ9.PFo7j9Lo2EZOYSEkGIjjEdicYlvNiYsMxGJVneRHKlYuxsbxOyqqydzG3z0ggp6GnPW0Y86Mah-mMx9Si-_ifA"
+    }
+  });
+};
+
+export const deletePet = async data => {
+  return await apiRequestWithBody("POST", `${URL}pet/die`, data);
+};
+
+export const getPet = async data => {
+  return await apiRequestWithBody("POST", `${URL}pet/`, data);
 };
 
 // export const getUserData = async token => {

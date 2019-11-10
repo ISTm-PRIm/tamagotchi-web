@@ -12,18 +12,16 @@ export default class CreatePet extends React.Component {
     this.state = { name: "" };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleSubmit = async event => {
-    event.preventDefault();
-
+  handleSubmit = async () => {
     if (this.state.name.length >= 3) {
       const data = await createPet({
-        name: this.state.name,
-        password: "cookie.idUser"
+        name: this.state.name
       });
-
+      console.log("Pet", data);
       if (data.error) {
         alert(data.message);
       } else {
+        console.log("Pet", data);
         document.location.href = "/home?room=livingroom";
       }
     } else {
@@ -98,6 +96,9 @@ export default class CreatePet extends React.Component {
                     alignItems: "center",
                     backgroundColor: "#007AFF",
                     color: "rgba(255,255,255,1)"
+                  }}
+                  onClick={() => {
+                    this.handleSubmit();
                   }}
                 >
                   Создать

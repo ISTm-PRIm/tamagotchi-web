@@ -81,12 +81,12 @@ export default class SignInPage extends React.Component {
                   paddingBottom: 10
                 }}
               >
-                <LoginButton
+                {/* <LoginButton
                   icon={<Google />}
                   name={"Google"}
                   color={GoogleColor}
-                />
-                <LoginButton icon={<VK />} name={"Вконтакте"} color={VKColor} />
+                /> */}
+                {/* <LoginButton icon={<VK />} name={"Вконтакте"} color={VKColor} /> */}
                 <LoginButton
                   icon={<Facebook />}
                   name={"Facebook"}

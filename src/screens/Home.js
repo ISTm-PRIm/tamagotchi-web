@@ -25,7 +25,7 @@ import NavigationMap from "../components/NavigationMap";
 import Modal from "../components/Modal";
 import LifebarLeft from "../components/lifebar-left";
 import LifebarRight from "../components/lifebar-right";
-import Spinner from "../components/Spinner";
+import { getPet } from "../scripts/api";
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -33,11 +33,23 @@ export default class Home extends React.Component {
     this.state = {
       musicOn: false,
       petState: "HELLO",
+
+      // {
+      //   "cleanIndicator": 0,
+      //   "createDate": "2019-11-10T10:55:46.201Z",
+      //   "foolIndicator": 0,
+      //   "healthIndicator": 0,
+      //   "id": "string",
+      //   "isAlive": true,
+      //   "name": "string",
+      //   "sleepIndicator": 0
+      // }
+
       petValue: {
-        health: 0,
-        hygiene: randomInteger(0, 100),
-        food: randomInteger(0, 100),
-        sleep: randomInteger(0, 100)
+        health: null,
+        hygiene: null,
+        food: null,
+        sleep: null
       }
     };
 
@@ -45,6 +57,48 @@ export default class Home extends React.Component {
       this.audio = new Audio(music);
     } catch (error) {
       console.log("audio error -", error);
+    }
+  }
+
+  async getData() {
+    let data = await getPet({ petId: "" });
+    if (data.error) {
+      alert("Ошибка соединения. Попробуйте позже");
+    } else {
+      if (data.pet.isAlive) {
+        this.setState(
+          {
+            petValue: {
+              health: data.pet.healthIndicator,
+              hygiene: data.pet.cleanIndicator,
+              food: data.pet.foolIndicator,
+              sleep: data.pet.sleepIndicator
+            }
+          },
+          this.isBad()
+        );
+      } else {
+        this.setState({
+          petState: "DEAD",
+          petValue: {
+            health: 0,
+            hygiene: 0,
+            food: 0,
+            sleep: 0
+          }
+        });
+      }
+    }
+  }
+
+  isBad() {
+    if (
+      this.state.petValue.health <= 25 ||
+      this.state.petValue.hygiene <= 20 ||
+      this.state.petValue.food <= 20 ||
+      this.state.petValue.sleep <= 20
+    ) {
+      this.setState({ petState: "BAD" });
     }
   }
 
@@ -72,27 +126,7 @@ export default class Home extends React.Component {
   }
 
   componentDidMount() {
-    if (this.state.petValue.health === 0) {
-      this.setState({
-        petState: "DEAD",
-        petValue: {
-          health: 0,
-          hygiene: 0,
-          food: 0,
-          sleep: 0
-        }
-      });
-    } else {
-      if (
-        this.state.petValue.health <= 25 ||
-        this.state.petValue.hygiene <= 20 ||
-        this.state.petValue.food <= 20 ||
-        this.state.petValue.sleep <= 20
-      ) {
-        this.setState({ petState: "BAD" });
-      }
-    }
-    //getData()
+    this.getData();
     this.setState({ musicOn: true });
     this.audio.play();
   }
@@ -110,7 +144,8 @@ export default class Home extends React.Component {
     }
 
     return (
-      <div className={'container'}
+      <div
+        className={"container"}
         style={{
           position: "fixed",
           backgroundImage: `url(${roomInfo.img})`,
@@ -119,7 +154,7 @@ export default class Home extends React.Component {
           height: "100%"
         }}
       >
-        <div className={'header'}>
+        <div className={"header"}>
           <FunctionMenu
             value={this.state.petValue}
             nameRoom={roomInfo.name}
@@ -139,48 +174,48 @@ export default class Home extends React.Component {
           />
         </div>
 
-        <div className={'content'}>
-          <div className={'lifebar-left'}>
-            <LifebarLeft value={this.state.petValue}
-                         nameRoom={roomInfo.name}
-                         button={roomInfo.button}
-                         click={state => {
-                           this.setState({ petState: state });
-                         }}/>
+        <div className={"content"}>
+          <div className={"lifebar-left"}>
+            <LifebarLeft
+              value={this.state.petValue}
+              nameRoom={roomInfo.name}
+              button={roomInfo.button}
+              click={state => {
+                this.setState({ petState: state });
+              }}
+            />
           </div>
 
-          <div className={'pet-area'}>
+          <div className={"pet-area"}>
             <Pet
               height={500}
               width={500}
               img={this.getPetImage(this.state.petState)}
             />
             {this.state.petValue.health === 0 ? (
-              <Modal isShowModal={'true'}>
-                <Link
-                  className="active_button"
-                  to={"/create_pet"}
-                >
+              <Modal isShowModal={"true"}>
+                <Link className="active_button" to={"/create_pet"}>
                   Создать нового питомца
                 </Link>
               </Modal>
             ) : null}
           </div>
 
-          <div className={'lifebar-right'}>
-            <LifebarRight value={this.state.petValue}
-                         nameRoom={roomInfo.name}
-                         button={roomInfo.button}
-                         click={state => {
-                           this.setState({ petState: state });
-                         }}/>
+          <div className={"lifebar-right"}>
+            <LifebarRight
+              value={this.state.petValue}
+              nameRoom={roomInfo.name}
+              button={roomInfo.button}
+              click={state => {
+                this.setState({ petState: state });
+              }}
+            />
           </div>
         </div>
 
-        <div className={'navbar'}>
+        <div className={"navbar"}>
           <NavigationMap />
         </div>
-
       </div>
     );
   }
