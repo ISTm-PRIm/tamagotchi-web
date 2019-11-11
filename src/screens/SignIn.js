@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 import InputWithLength from "../components/CustomInput";
 import { Facebook } from "../content/Icons";
@@ -26,7 +26,6 @@ export default class SignInPage extends React.Component {
     try {
       const response = await login({ email, password });
       localStorage.setItem(ACCESS_TOKEN, response.accessToken);
-      alert("You're successfully logged in!");
       const userData = await getCurrentUser();
 
       if (!userData.pet) {
@@ -34,7 +33,7 @@ export default class SignInPage extends React.Component {
         return;
       }
 
-      this.props.history.push("/");
+      this.props.history.push("/home?room=livingroom");
     } catch (error) {
       alert(
         (error && error.message) ||
@@ -64,8 +63,6 @@ export default class SignInPage extends React.Component {
     }
   };
 
-  componentDidMount() {}
-
   render() {
     return (
       <div
@@ -77,7 +74,6 @@ export default class SignInPage extends React.Component {
           height: "100%"
         }}
       >
-        {/* <p style={style.namePage}>Тамагочи "Ветерок"</p> */}
         <div style={{ ...style.display, ...style.indent }}>
           <div className="form">
             <form
@@ -87,26 +83,13 @@ export default class SignInPage extends React.Component {
                 background: "rgba(255,255,255,1)",
                 flexWrap: "wrap",
                 borderRadius: 20,
-                padding: "0px 20px 20px 20px",
+                padding: "20px 20px 10px 20px",
                 justifyContent: "center",
                 boxShadow: "0 0 15px rgba(0,0,0,0.25)"
               }}
             >
-              <p
-                style={{
-                  fontFamily: "GraphikLCG-Semibold",
-                  textAlign: "center"
-                }}
-              >
-                Войти через ...
-              </p>
-              <div>
+              <div style={{ width: "100%" }}>
                 <InputWithLength
-                  styleDiv={{
-                    paddingTop: 10,
-                    paddingBottom: 5,
-                    width: 420
-                  }}
                   maxLength={100}
                   minLength={5}
                   placeholder={"Email"}
@@ -116,14 +99,10 @@ export default class SignInPage extends React.Component {
                   }}
                 />
                 <InputWithLength
-                  styleDiv={{
-                    paddingTop: 10,
-                    paddingBottom: 5,
-                    width: 420
-                  }}
-                  maxLength={100}
+                  maxLength={20}
                   minLength={5}
-                  placeholder={"password"}
+                  type={"password"}
+                  placeholder={"Пароль"}
                   state={this.state.password}
                   onChange={event => {
                     this.setState({ password: event.target.value });
@@ -131,12 +110,7 @@ export default class SignInPage extends React.Component {
                 />
                 {this.state.isSignUp && (
                   <InputWithLength
-                    styleDiv={{
-                      paddingTop: 10,
-                      paddingBottom: 5,
-                      width: 420
-                    }}
-                    maxLength={100}
+                    maxLength={50}
                     minLength={5}
                     placeholder={"Name"}
                     state={this.state.name}
@@ -147,13 +121,21 @@ export default class SignInPage extends React.Component {
                 )}
 
                 {this.state.isSignUp ? (
-                  <div onClick={this.createNewUser}>Регистрация</div>
+                  <div
+                    className="sign_in_up_button"
+                    onClick={this.createNewUser}
+                  >
+                    Регистрация
+                  </div>
                 ) : (
-                  <div onClick={this.signIn}>Авторизация</div>
+                  <div className="sign_in_up_button" onClick={this.signIn}>
+                    Авторизация
+                  </div>
                 )}
 
                 {this.state.isSignUp ? (
                   <div
+                    className="sign_in_up_button"
                     onClick={() => {
                       this.setState({
                         isSignUp: false
@@ -164,6 +146,7 @@ export default class SignInPage extends React.Component {
                   </div>
                 ) : (
                   <div
+                    className="sign_in_up_button"
                     onClick={() => {
                       this.setState({
                         isSignUp: true
@@ -174,6 +157,24 @@ export default class SignInPage extends React.Component {
                   </div>
                 )}
               </div>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center"
+                }}
+              >
+                <div style={{ borderBottom: 1 }} />
+                <p
+                  style={{
+                    fontFamily: "GraphikLCG-Semibold",
+                    textAlign: "center"
+                  }}
+                >
+                  Или войти через
+                </p>
+              </div>
+
               <div
                 style={{
                   width: "100%",
@@ -194,7 +195,7 @@ export default class SignInPage extends React.Component {
                   color={FacebookColor}
                 />
               </div>
-              <div
+              {/* <div
                 style={{
                   width: "100%",
                   ...style.display,
@@ -202,19 +203,12 @@ export default class SignInPage extends React.Component {
                 }}
               >
                 <Link
-                  style={{
-                    ...style.display,
-                    ...style.button,
-                    textDecoration: "none",
-                    alignItems: "center",
-                    backgroundColor: "#007AFF",
-                    color: "rgba(255,255,255,1)"
-                  }}
+                  className="sign_in_up_button"
                   to={`/home?room=livingroom`}
                 >
                   Тестовая комната
                 </Link>
-              </div>
+              </div> */}
             </form>
           </div>
         </div>
@@ -235,9 +229,7 @@ const style = {
     fontSize: 27,
     fontFamily: "GraphikLCG-Semibold"
   },
-  display: {
-    display: "flex"
-  },
+
   indent: {
     position: "absolute",
     width: "100%",
@@ -245,11 +237,8 @@ const style = {
     justifyContent: "center",
     alignItems: "center"
   },
-  button: {
-    justifyContent: "center",
-    width: "100%",
-    height: 50,
-    borderRadius: 3
+  display: {
+    display: "flex"
   },
   form: {
     width: 380,

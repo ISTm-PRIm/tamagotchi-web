@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Pet from "../components/Pet";
-
+import Spinner from "../components/Spinner";
 import home from "../content/images/home.jpg";
 import bathroom from "../content/images/bathroom.jpg";
 import bedroom from "../content/images/bedroom.jpg";
@@ -34,6 +34,7 @@ export default class Home extends React.Component {
     this.state = {
       musicOn: false,
       petState: "HELLO",
+      name: null,
       petValue: {
         health: null,
         hygiene: null,
@@ -60,6 +61,7 @@ export default class Home extends React.Component {
       if (data.pet.isAlive) {
         this.setState(
           {
+            name: data.pet.name,
             petValue: {
               health: data.pet.healthIndicator,
               hygiene: data.pet.cleanIndicator,
@@ -120,6 +122,7 @@ export default class Home extends React.Component {
 
   setPetValue = ({ pet }) => {
     this.setState({
+      name: pet.name,
       petValue: {
         health: pet.healthIndicator,
         hygiene: pet.cleanIndicator,
@@ -167,6 +170,10 @@ export default class Home extends React.Component {
       roomInfo = getRoomInfoByName(getParameterFromUrl("room").toString());
     }
 
+    if (!this.state.petValue) {
+      return <Spinner />;
+    }
+
     return (
       <div
         className={"container"}
@@ -181,7 +188,7 @@ export default class Home extends React.Component {
         <div className={"header"}>
           <FunctionMenu
             value={this.state.petValue}
-            nameRoom={roomInfo.name}
+            name={this.state.name}
             button={roomInfo.button}
             click={state => {
               this.actionPet({ roomInfo, state });

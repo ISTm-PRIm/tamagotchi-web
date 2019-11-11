@@ -16,6 +16,7 @@ class FunctionMenu extends React.Component {
       <div className={"wrapper"}>
         <Modal isShowModal={this.state.isShowHelp}>
           <Help
+            name={this.props.name}
             hideModal={() => {
               this.setState({ isShowHelp: false });
             }}
@@ -23,7 +24,8 @@ class FunctionMenu extends React.Component {
         </Modal>
 
         <div className={"menu-room"}>
-          <h3>{this.props.nameRoom}</h3>
+          {console.log("value", this.props)}
+          <h3>{this.props.name}</h3>
           <div
             className={"btn-action button pulse"}
             onClick={() => {

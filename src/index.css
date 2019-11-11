@@ -121,7 +121,7 @@ code {
 .active_button:hover {
   background-color: #a25a6e;
   transform: scale(1.1, 1.1);
-  transition: .1s ease-out 0.1s;
+  transition: 0.1s ease-out 0.1s;
 }
 
 .margin_auto {
@@ -148,4 +148,39 @@ code {
     border-radius: 3px;
     padding: 20px;
   }
+}
+
+.sign_in_up_button {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 10px 5px;
+  /* height: 50, */
+  border-radius: 3px;
+  text-decoration: none;
+  align-items: center;
+  background-color: #007aff;
+  color: rgba(255, 255, 255, 1);
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.button_about {
+  text-align: center;
+  cursor: pointer;
+  margin-top: 10px;
+  padding: 15px 30px;
+  color: white;
+  text-decoration: none;
+  font-family: sans-serif;
+  font-size: 1.1em;
+  font-weight: bold;
+  background: #c06c84;
+  box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  align-self: flex-end;
+}
+
+a {
+  text-decoration: none;
 }
