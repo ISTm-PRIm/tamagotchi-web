@@ -4,6 +4,7 @@ import { Question, SignOut, Pause, Play, Home } from "../content/Icons";
 import Modal from "./Modal";
 import Help from "./Help";
 import "../content/scss/header.scss";
+import { ACCESS_TOKEN } from "../scripts/constants";
 
 class FunctionMenu extends React.Component {
   constructor(props) {
@@ -59,6 +60,7 @@ class FunctionMenu extends React.Component {
           <div
             className={"help-btn"}
             onClick={() => {
+              localStorage.removeItem(ACCESS_TOKEN);
               document.location.href = `/sign_in`;
             }}
           >
