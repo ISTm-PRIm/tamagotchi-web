@@ -20,12 +20,13 @@ import r from "../content/pet/Anim.json";
 import music from "../content/audio/music.mp3";
 import { Bath, Bed, Heartbeat, Utensils } from "../content/Icons";
 import FunctionMenu from "../components/FunctionMenu";
-import { getParameterFromUrl, randomInteger } from "../scripts/scripts";
+import { getParameterFromUrl } from "../scripts/scripts";
 import NavigationMap from "../components/NavigationMap";
 import Modal from "../components/Modal";
 import LifebarLeft from "../components/lifebar-left";
 import LifebarRight from "../components/lifebar-right";
-import { getPet } from "../scripts/api";
+import { getPet, getCurrentUser, petAction } from "../scripts/api";
+import { ACCESS_TOKEN } from "../scripts/constants";
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -33,18 +34,6 @@ export default class Home extends React.Component {
     this.state = {
       musicOn: false,
       petState: "HELLO",
-
-      // {
-      //   "cleanIndicator": 0,
-      //   "createDate": "2019-11-10T10:55:46.201Z",
-      //   "foolIndicator": 0,
-      //   "healthIndicator": 0,
-      //   "id": "string",
-      //   "isAlive": true,
-      //   "name": "string",
-      //   "sleepIndicator": 0
-      // }
-
       petValue: {
         health: null,
         hygiene: null,
@@ -61,6 +50,9 @@ export default class Home extends React.Component {
   }
 
   async getData() {
+    const user = await getCurrentUser();
+
+    console.log("user", user);
     let data = await getPet({ petId: "" });
     if (data.error) {
       alert("Ошибка соединения. Попробуйте позже");
@@ -92,11 +84,12 @@ export default class Home extends React.Component {
   }
 
   isBad() {
+    const { petValue } = this.state;
     if (
-      this.state.petValue.health <= 25 ||
-      this.state.petValue.hygiene <= 20 ||
-      this.state.petValue.food <= 20 ||
-      this.state.petValue.sleep <= 20
+      petValue.health <= 25 ||
+      petValue.hygiene <= 20 ||
+      petValue.food <= 20 ||
+      petValue.sleep <= 20
     ) {
       this.setState({ petState: "BAD" });
     }
@@ -125,11 +118,42 @@ export default class Home extends React.Component {
     }
   }
 
-  componentDidMount() {
-    this.getData();
-    this.setState({ musicOn: true });
-    this.audio.play();
+  setPetValue = ({ pet }) => {
+    this.setState({
+      petValue: {
+        health: pet.healthIndicator,
+        hygiene: pet.cleanIndicator,
+        food: pet.foolIndicator,
+        sleep: pet.sleepIndicator
+      }
+    });
+  };
+  async componentDidMount() {
+    this.setState({ musicOn: false });
+
+    if (!localStorage.getItem(ACCESS_TOKEN)) {
+      this.props.history.push("/sign_in");
+      return;
+    }
+
+    const user = await getCurrentUser();
+
+    if (!user.pet) {
+      this.props.history.push("/create_pet");
+      return;
+    }
+
+    const { pet } = user;
+
+    this.setPetValue({ pet });
   }
+
+  actionPet = async ({ roomInfo, state }) => {
+    this.setState({ petState: state });
+    const result = await petAction({ action: roomInfo.button.action });
+
+    this.setPetValue({ pet: result.pet });
+  };
 
   componentDidUpdate() {
     if (this.state.petValue.health === 0 && this.state.petState !== "DEAD") {
@@ -160,7 +184,7 @@ export default class Home extends React.Component {
             nameRoom={roomInfo.name}
             button={roomInfo.button}
             click={state => {
-              this.setState({ petState: state });
+              this.actionPet({ roomInfo, state });
             }}
             music={() => {
               this.setState({ musicOn: !this.state.musicOn });
@@ -268,7 +292,8 @@ const getRoomInfoByName = (name = "bedroom") => {
             <Utensils /> Кормить
           </>
         ),
-        state: "EAT"
+        state: "EAT",
+        action: "FEED"
       }
     },
     hospital: {
@@ -280,7 +305,8 @@ const getRoomInfoByName = (name = "bedroom") => {
             <Heartbeat /> Лечить
           </>
         ),
-        state: "HEARTBEAT"
+        state: "HEARTBEAT",
+        action: "PLAY"
       }
     }
   };

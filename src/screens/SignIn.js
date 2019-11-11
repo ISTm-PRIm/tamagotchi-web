@@ -1,40 +1,67 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Google, Facebook, VK } from "../content/Icons";
+
+import InputWithLength from "../components/CustomInput";
+import { Facebook } from "../content/Icons";
 import LoginButton from "../components/LoginButton";
 import fon from "../content/images/sign_in_fone.jpg";
-import { VKColor, FacebookColor, GoogleColor } from "../content/color";
+import { FacebookColor } from "../content/color";
 import "../index.css";
+import { login, getCurrentUser, signup } from "../scripts/api";
+import { ACCESS_TOKEN } from "../scripts/constants";
 
 export default class SignInPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { email: "", password: "" };
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = { email: "", password: "", name: "", isSignUp: false };
   }
-  handleSubmit = async event => {
+
+  signIn = async () => {
+    const { email, password } = this.state;
+    if (email.length === 0 || password.length === 0) {
+      alert("Вы не ввели данные для авторизации в системе.");
+      return;
+    }
+
+    try {
+      const response = await login({ email, password });
+      localStorage.setItem(ACCESS_TOKEN, response.accessToken);
+      alert("You're successfully logged in!");
+      const userData = await getCurrentUser();
+
+      if (!userData.pet) {
+        this.props.history.push("/create_pet");
+        return;
+      }
+
+      this.props.history.push("/");
+    } catch (error) {
+      alert(
+        (error && error.message) ||
+          "Oops! Something went wrong. Please try again!"
+      );
+    }
+  };
+
+  createNewUser = async event => {
     event.preventDefault();
+    const { email, password, name } = this.state;
+    if (email.length === 0 || password.length === 0 || name.length === 0) {
+      alert("Вы не ввели данные для авторизации в системе.");
+      return;
+    }
 
-    // if (this.state.email.length !== 0 && this.state.password.length !== 0) {
-    //   const data = await login({
-    //     email: this.state.email,
-    //     password: this.state.password
-    //   });
-
-    //   if (data.error) {
-    //     alert(data.message);
-    //   } else {
-    //     cookie.load("token").profile.role === "ADMIN"
-    //       ? (document.location.href = "/feed/social_network?page=1")
-    //       : (document.location.href = "/shop");
-    //   }
-    // } else {
-    //   this.setState({
-    //     email: this.state.email,
-    //     password: this.state.password
-    //   });
-    //   alert("Вы не ввели данные для авторизации в системе.");
-    // }
+    try {
+      const response = await signup({ email, password, name });
+      localStorage.setItem(ACCESS_TOKEN, response.accessToken);
+      console.log("response", response);
+      await this.signIn();
+    } catch (error) {
+      alert(
+        (error && error.message) ||
+          "Oops! Something went wrong. Please try again!"
+      );
+    }
   };
 
   componentDidMount() {}
@@ -73,6 +100,80 @@ export default class SignInPage extends React.Component {
               >
                 Войти через ...
               </p>
+              <div>
+                <InputWithLength
+                  styleDiv={{
+                    paddingTop: 10,
+                    paddingBottom: 5,
+                    width: 420
+                  }}
+                  maxLength={100}
+                  minLength={5}
+                  placeholder={"Email"}
+                  state={this.state.email}
+                  onChange={event => {
+                    this.setState({ email: event.target.value });
+                  }}
+                />
+                <InputWithLength
+                  styleDiv={{
+                    paddingTop: 10,
+                    paddingBottom: 5,
+                    width: 420
+                  }}
+                  maxLength={100}
+                  minLength={5}
+                  placeholder={"password"}
+                  state={this.state.password}
+                  onChange={event => {
+                    this.setState({ password: event.target.value });
+                  }}
+                />
+                {this.state.isSignUp && (
+                  <InputWithLength
+                    styleDiv={{
+                      paddingTop: 10,
+                      paddingBottom: 5,
+                      width: 420
+                    }}
+                    maxLength={100}
+                    minLength={5}
+                    placeholder={"Name"}
+                    state={this.state.name}
+                    onChange={event => {
+                      this.setState({ name: event.target.value });
+                    }}
+                  />
+                )}
+
+                {this.state.isSignUp ? (
+                  <div onClick={this.createNewUser}>Регистрация</div>
+                ) : (
+                  <div onClick={this.signIn}>Авторизация</div>
+                )}
+
+                {this.state.isSignUp ? (
+                  <div
+                    onClick={() => {
+                      this.setState({
+                        isSignUp: false
+                      });
+                    }}
+                  >
+                    Авторизация
+                  </div>
+                ) : (
+                  <div
+                    onClick={() => {
+                      this.setState({
+                        isSignUp: true
+                      });
+                    }}
+                  >
+                    Создать новый аккаунт
+                  </div>
+                )}
+              </div>
               <div
                 style={{
                   width: "100%",

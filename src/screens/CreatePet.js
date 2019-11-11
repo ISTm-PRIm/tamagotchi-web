@@ -5,6 +5,7 @@ import goodBoy from "../content/pet/Create.json";
 import fon from "../content/images/sign_in_fone.jpg";
 import { createPet } from "../scripts/api";
 import "../index.css";
+import { ACCESS_TOKEN } from "../scripts/constants";
 
 export default class CreatePet extends React.Component {
   constructor(props) {
@@ -12,26 +13,33 @@ export default class CreatePet extends React.Component {
     this.state = { name: "" };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
   handleSubmit = async () => {
-    if (this.state.name.length >= 3) {
-      const data = await createPet({
-        name: this.state.name
-      });
-      console.log("Pet", data);
-      if (data.error) {
-        alert(data.message);
-      } else {
-        console.log("Pet", data);
-        document.location.href = "/home?room=livingroom";
-      }
-    } else {
+    if (this.state.name.length < 3) {
       this.setState({
         email: this.state.email,
         password: this.state.password
       });
       alert("Вы ввели не корректные данные для создания питомца");
+      return;
     }
+
+    const data = await createPet({ name: this.state.name });
+
+    console.log("Pet", data);
+
+    if (data.error) {
+      alert(data.message);
+      return;
+    }
+
+    console.log("Pet", data);
+    document.location.href = "/home?room=livingroom";
   };
+
+  componentDidMount() {
+    console.log("token", localStorage.getItem(ACCESS_TOKEN));
+  }
 
   render() {
     return (
