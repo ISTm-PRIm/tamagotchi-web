@@ -4,8 +4,9 @@ export default function InputWithLength(props) {
   return (
     <div className="inputWrapper">
       <input
+        style={{ flex: 1 }}
         maxLength={props.maxLength}
-        type={"text"}
+        type={props.type || "text"}
         placeholder={props.placeholder}
         className="input"
         value={props.state}
