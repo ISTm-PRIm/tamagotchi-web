@@ -166,7 +166,11 @@ export default class Home extends React.Component {
     if (this.state.petValue.health === 0 && this.state.petState !== "DEAD") {
       this.setState({ petState: "DEAD" });
     }
-    if (this.state.room !== getParameterFromUrl("room").toString()) {
+
+    if (
+      getParameterFromUrl("room") &&
+      this.state.room !== getParameterFromUrl("room").toString()
+    ) {
       this.setState({
         petState: "HELLO",
         room: getParameterFromUrl("room").toString()
