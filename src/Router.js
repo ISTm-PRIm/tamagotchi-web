@@ -5,6 +5,7 @@ import Home from "./screens/Home";
 import Error404 from "./screens/Error404";
 import CreatePet from "./screens/CreatePet";
 import About from "./screens/About";
+import OAuth2RedirectHandler from "./screens/OAuth2RedirectHandler";
 
 const RouterConf = () => {
   return (
@@ -15,6 +16,10 @@ const RouterConf = () => {
         <Route path="/sign_in" component={SignIn} />
         <Route path="/create_pet" component={CreatePet} />
         <Route path="/about" component={About} />
+        <Route
+          path="/oauth2/redirect"
+          component={OAuth2RedirectHandler}
+        ></Route>
         <Route component={Error404} />
       </Switch>
     </Router>

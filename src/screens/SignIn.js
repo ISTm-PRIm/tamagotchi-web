@@ -8,7 +8,7 @@ import fon from "../content/images/sign_in_fone.jpg";
 import { FacebookColor } from "../content/color";
 import "../index.css";
 import { login, getCurrentUser, signup } from "../scripts/api";
-import { ACCESS_TOKEN } from "../scripts/constants";
+import { ACCESS_TOKEN, FACEBOOK_AUTH_URL } from "../scripts/constants";
 
 export default class SignInPage extends React.Component {
   constructor(props) {
@@ -189,11 +189,18 @@ export default class SignInPage extends React.Component {
                   color={GoogleColor}
                 /> */}
                 {/* <LoginButton icon={<VK />} name={"Вконтакте"} color={VKColor} /> */}
-                <LoginButton
-                  icon={<Facebook />}
-                  name={"Facebook"}
-                  color={FacebookColor}
-                />
+
+                <a
+                  className="login_button"
+                  href={FACEBOOK_AUTH_URL}
+                  style={{
+                    backgroundColor: FacebookColor
+                  }}
+                >
+                  <Facebook />
+                  <div className="line" />
+                  <div className="margin_auto">Facebook</div>
+                </a>
               </div>
               {/* <div
                 style={{

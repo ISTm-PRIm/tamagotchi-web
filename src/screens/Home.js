@@ -263,7 +263,8 @@ const getRoomInfoByName = (name = "bedroom") => {
             <Bed /> | Играть
           </>
         ),
-        state: "PLAY"
+        state: "PLAY",
+        action: "PLAY"
       }
     },
     bedroom: {
@@ -275,7 +276,8 @@ const getRoomInfoByName = (name = "bedroom") => {
             <Bed /> Уложить спать
           </>
         ),
-        state: "SLEEP"
+        state: "SLEEP",
+        action: "SLEEP"
       }
     },
     bath: {
@@ -287,7 +289,8 @@ const getRoomInfoByName = (name = "bedroom") => {
             <Bath /> Купать
           </>
         ),
-        state: "BATH"
+        state: "BATH",
+        action: "BATH"
       }
     },
     kitchen: {
@@ -313,10 +316,11 @@ const getRoomInfoByName = (name = "bedroom") => {
           </>
         ),
         state: "HEARTBEAT",
-        action: "PLAY"
+        action: "TREAT"
       }
     }
   };
 
   return rooms[name] || rooms.bedroom;
 };
+// PLAY, FEED, BATH, SLEEP, TREAT
