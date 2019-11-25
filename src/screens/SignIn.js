@@ -8,7 +8,11 @@ import fon from "../content/images/sign_in_fone.jpg";
 import { FacebookColor } from "../content/color";
 import "../index.css";
 import { login, getCurrentUser, signup } from "../scripts/api";
-import { ACCESS_TOKEN, FACEBOOK_AUTH_URL } from "../scripts/constants";
+import {
+  ACCESS_TOKEN,
+  FACEBOOK_AUTH_URL,
+  FACEBOOK_AUTH_URL_PROD
+} from "../scripts/constants";
 
 export default class SignInPage extends React.Component {
   constructor(props) {
@@ -192,7 +196,11 @@ export default class SignInPage extends React.Component {
 
                 <a
                   className="login_button"
-                  href={FACEBOOK_AUTH_URL}
+                  href={
+                    process.env.NODE_ENV === "production"
+                      ? FACEBOOK_AUTH_URL_PROD
+                      : FACEBOOK_AUTH_URL
+                  }
                   style={{
                     backgroundColor: FacebookColor
                   }}
