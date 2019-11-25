@@ -14,8 +14,9 @@ import dead from "../content/pet/RIP.json";
 import eat from "../content/pet/Eat.json";
 import bath from "../content/pet/Bathroom.json";
 import bad from "../content/pet/Bad.json";
-import goodBoy from "../content/pet/Create.json";
-import r from "../content/pet/Anim.json";
+import good from "../content/pet/Good.json";
+import treat from "../content/pet/Treat.json";
+import play from "../content/pet/Play.json";
 
 import music from "../content/audio/music.mp3";
 import { Bath, Bed, Heartbeat, Utensils } from "../content/Icons";
@@ -34,6 +35,7 @@ export default class Home extends React.Component {
     this.state = {
       musicOn: false,
       petState: "HELLO",
+      room: "livingroom",
       name: null,
       petValue: {
         health: null,
@@ -100,7 +102,7 @@ export default class Home extends React.Component {
   getPetImage(state) {
     switch (state) {
       case "HELLO":
-        return goodBoy;
+        return good;
       case "SLEEP":
         return sleep;
       case "DEAD":
@@ -112,7 +114,9 @@ export default class Home extends React.Component {
       case "BAD":
         return bad;
       case "HEARTBEAT":
-        return r;
+        return treat;
+      case "PLAY":
+        return play;
       case "CREATE":
         return hello;
       default:
@@ -161,6 +165,12 @@ export default class Home extends React.Component {
   componentDidUpdate() {
     if (this.state.petValue.health === 0 && this.state.petState !== "DEAD") {
       this.setState({ petState: "DEAD" });
+    }
+    if (this.state.room !== getParameterFromUrl("room").toString()) {
+      this.setState({
+        petState: "HELLO",
+        room: getParameterFromUrl("room").toString()
+      });
     }
   }
 

@@ -4,10 +4,6 @@ import { GREEN, RED, BLUE } from "../content/color";
 import LifeCircle from "./LifeCircle";
 
 class LifebarLeft extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div className={"wrapper"}>

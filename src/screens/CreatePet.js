@@ -1,6 +1,6 @@
 import React from "react";
 import Pet from "../components/Pet";
-import InputWithLength from "../components/CustomInput";
+import { InputWithLength } from "../components/CustomInput";
 import goodBoy from "../content/pet/Create.json";
 import fon from "../content/images/sign_in_fone.jpg";
 import { createPet } from "../scripts/api";

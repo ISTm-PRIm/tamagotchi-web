@@ -1,7 +1,7 @@
 import React from "react";
 import Pet from "../components/Pet";
 import fon from "../content/images/sign_in_fone.jpg";
-import hello from "../content/pet/RIP.json";
+import hello from "../content/pet/Search.json";
 
 const Error404 = () => {
   return (

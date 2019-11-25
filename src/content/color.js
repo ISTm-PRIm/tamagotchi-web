@@ -4,6 +4,7 @@ export const GREEN = "#2dbd63";
 export const YELLOW = "#f6e72f";
 export const PURPLE = "#ce84e1";
 export const ORANGE = "#ff8000";
+export const WHITE = "#ffffff";
 
 export const GoogleColor = "#e60023";
 export const VKColor = "#4a76a8";

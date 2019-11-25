@@ -184,3 +184,9 @@ code {
 a {
   text-decoration: none;
 }
+
+.about_img {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}

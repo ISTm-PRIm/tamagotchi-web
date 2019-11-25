@@ -1,11 +1,10 @@
 import React from "react";
 // import { Link } from "react-router-dom";
 
-import InputWithLength from "../components/CustomInput";
+import { Input } from "../components/CustomInput";
 import { Facebook } from "../content/Icons";
-import LoginButton from "../components/LoginButton";
 import fon from "../content/images/sign_in_fone.jpg";
-import { FacebookColor } from "../content/color";
+import { FacebookColor, WHITE } from "../content/color";
 import "../index.css";
 import { login, getCurrentUser, signup } from "../scripts/api";
 import {
@@ -84,7 +83,7 @@ export default class SignInPage extends React.Component {
               onSubmit={this.handleSubmit}
               style={{
                 ...style.display,
-                background: "rgba(255,255,255,1)",
+                background: WHITE,
                 flexWrap: "wrap",
                 borderRadius: 20,
                 padding: "20px 20px 10px 20px",
@@ -93,7 +92,7 @@ export default class SignInPage extends React.Component {
               }}
             >
               <div style={{ width: "100%" }}>
-                <InputWithLength
+                <Input
                   maxLength={100}
                   minLength={5}
                   placeholder={"Email"}
@@ -102,7 +101,7 @@ export default class SignInPage extends React.Component {
                     this.setState({ email: event.target.value });
                   }}
                 />
-                <InputWithLength
+                <Input
                   maxLength={20}
                   minLength={5}
                   type={"password"}
@@ -113,7 +112,7 @@ export default class SignInPage extends React.Component {
                   }}
                 />
                 {this.state.isSignUp && (
-                  <InputWithLength
+                  <Input
                     maxLength={50}
                     minLength={5}
                     placeholder={"Name"}
