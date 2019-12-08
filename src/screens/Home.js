@@ -1,12 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 import Pet from "../components/Pet";
 import Spinner from "../components/Spinner";
+
 import home from "../content/images/home.jpg";
 import bathroom from "../content/images/bathroom.jpg";
 import bedroom from "../content/images/bedroom.jpg";
 import hospital from "../content/images/hospital.jpg";
 import kitchen from "../content/images/kitchen.jpg";
+import paw from "../content/images/paw.svg";
 
 import hello from "../content/pet/Hello.json";
 import sleep from "../content/pet/Sleep.json";
@@ -28,6 +31,9 @@ import LifebarLeft from "../components/lifebar-left";
 import LifebarRight from "../components/lifebar-right";
 import { getPet, getCurrentUser, petAction } from "../scripts/api";
 import { ACCESS_TOKEN } from "../scripts/constants";
+
+const refreshDate = new Date();
+refreshDate.setDate(Date.now() + 1000 * 60 * 15);
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -54,7 +60,6 @@ export default class Home extends React.Component {
 
   async getData() {
     const user = await getCurrentUser();
-
     console.log("user", user);
     let data = await getPet({ petId: "" });
     if (data.error) {
@@ -163,6 +168,10 @@ export default class Home extends React.Component {
   };
 
   componentDidUpdate() {
+    if (refreshDate <= Date.now()) {
+      refreshDate.setDate(Date.now() + 1000 * 60 * 15);
+      this.getData();
+    }
     if (this.state.petValue.health === 0 && this.state.petState !== "DEAD") {
       this.setState({ petState: "DEAD" });
     }
@@ -270,7 +279,10 @@ const getRoomInfoByName = (name = "bedroom") => {
       button: {
         icon: (
           <>
-            <Bed /> | Играть
+            <div style={{ paddingRight: 5, paddingTop: 2 }}>
+              <img src={paw} alt="" width={20} />
+            </div>{" "}
+            Играть
           </>
         ),
         state: "PLAY",
