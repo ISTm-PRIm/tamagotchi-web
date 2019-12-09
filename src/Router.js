@@ -11,7 +11,7 @@ const RouterConf = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={SignIn} />
         <Route path="/home" component={Home} />
         <Route path="/sign_in" component={SignIn} />
         <Route path="/create_pet" component={CreatePet} />
